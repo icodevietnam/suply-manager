@@ -2,23 +2,21 @@ $(function() {
 });
 
 function displayTable() {
-	var name = $("#customerName").val() ;
-	var email = $("#customerEmail").val() ;
+	var code = $("#customerCode").val() ;
 	var dataDepartments = [];
 	$.ajax({
 		url : "/suply-manager/brief/searchCustomer",
 		type : "GET",
 		dataType : "JSON",
 		data : {
-			name : name,
-			email : email
+			code : code
 		},
 		success : function(response) {
 			var i = 0;
 			$.each(response, function(key, value) {
 				i++;
 				dataDepartments.push([
-						i,value.name,value.address,value.email,value.birthDate,
+						i,value.code,value.name,value.address,value.email,value.birthDate,
 						"<button class='btn btn-sm btn-primary' onclick='displayBrief("
 								+ value.id + ")' >Xem Hồ Sơ</button>"]);
 			});
@@ -33,6 +31,8 @@ function displayTable() {
 				"aaSorting" : [],
 				"aoColumns" : [ {
 					"sTitle" : "STT"
+				},{
+					"sTitle" : "Mã"
 				}, {
 					"sTitle" : "Tên"
 				}, {

@@ -60,28 +60,17 @@ public class BriefDaoImpl implements BriefDao {
 	}
 
 	@Override
-	public List<Customer> searchCustomer(String name, String email) {
+	public List<Customer> searchCustomer(String code) {
 		List<Customer> listCustomers = new ArrayList<Customer>();
 		String sql = "";
-		if (!name.equalsIgnoreCase("") && email.equalsIgnoreCase("")) {
-			sql = " where c.name LIKE :name ";
-		}
-		if (name.equalsIgnoreCase("") && !email.equalsIgnoreCase("")) {
-			sql = " where c.email LIKE :email ";
-		}
-		if (!name.equalsIgnoreCase("") && !email.equalsIgnoreCase("")) {
-			sql = " where c.name LIKE :name OR c.email LIKE :email ";
+		String fullCode = "";
+		if (!code.equalsIgnoreCase("")) {
+			sql = " where c.code LIKE :code ";
+			fullCode = "PE"+code;
 		}
 		Query query = getCurrentSession().createQuery("from Customer c " + sql);
-		if (!name.equalsIgnoreCase("") && email.equalsIgnoreCase("")) {
-			query.setParameter("name", "%" + name + "%");
-		}
-		if (name.equalsIgnoreCase("") && !email.equalsIgnoreCase("")) {
-			query.setParameter("email", "%" + email + "%");
-		}
-		if (!name.equalsIgnoreCase("") && !email.equalsIgnoreCase("")) {
-			query.setParameter("name", "%" + name + "%");
-			query.setParameter("email", "%" + email + "%");
+		if (!code.equalsIgnoreCase("")) {
+			query.setParameter("code", "%" + fullCode + "%");
 		}
 		listCustomers = query.list();
 		return listCustomers;

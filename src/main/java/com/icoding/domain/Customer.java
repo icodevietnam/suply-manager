@@ -24,6 +24,9 @@ public class Customer {
 	@GeneratedValue
 	private Integer id;
 
+	@Column(name = "code", length = 14)
+	private String code;
+
 	// Ten khach hang
 	@Column(name = "name", length = 255)
 	private String name;
@@ -100,6 +103,14 @@ public class Customer {
 
 	public void setListBriefs(List<Brief> listBriefs) {
 		this.listBriefs = listBriefs;
+	}
+
+	public String getCode() {
+		return code;
+	}
+
+	public void setCode(String code) {
+		this.code = code;
 	}
 
 }

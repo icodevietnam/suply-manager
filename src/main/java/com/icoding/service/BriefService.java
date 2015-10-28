@@ -17,7 +17,7 @@ public interface BriefService {
 
 	void update(Brief brief);
 
-	List<Customer> searchCustomer(String name, String email);
+	List<Customer> searchCustomer(String code);
 	
 	List<Brief> searchBrief(int cusId);
 

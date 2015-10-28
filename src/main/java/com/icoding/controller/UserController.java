@@ -59,8 +59,8 @@ public class UserController {
 		List<Role> listRoles = new ArrayList<Role>();
 		listDepartments = departmentService.getAll();
 		listRoles = roleService.getAll();
-		model.addAttribute("pageName", "Quản lý Người dùng");
-		model.addAttribute("title", "Quản lý Người dùng");
+		model.addAttribute("pageName", "Quản lý người dùng");
+		model.addAttribute("title", "Quản lý người dùng");
 		model.addAttribute("listRoles", listRoles);
 		model.addAttribute("listDepartments", listDepartments);
 		return "user/index";

@@ -8,16 +8,12 @@
 		<div class="row">
 			<div class="col-lg-10">
 				<form id="searchBrief" class="form-inline">
-					<div class="form-group">
-						<input type="text" class="input-sm form-control" name="customerName"
-							id="customerName" placeholder="Tên Khách hàng">
+					<div class="input-group">
+						<span style="color:white;" class="btn-primary input-group-addon">PE</span> <input type="text"
+							name="code" id="customerCode" class="form-control" placeholder="Mã khách hàng" />
 					</div>
-					<div class="form-group">
-						<input type="email" class="input-sm form-control" id="customerEmail"
-							name="customerEmail" placeholder="Email">
-					</div>
-					<button type="button" onclick="displayTable();" class="btn btn-sm btn-primary">Tìm
-						Hồ Sơ</button>
+					<button type="button" onclick="displayTable();"
+						class="btn btn-sm btn-primary">Tìm Hồ Sơ</button>
 				</form>
 				<div style="margin-top: 20px;" class="table-responsive">
 					<table id="tblItems"
@@ -26,7 +22,6 @@
 				</div>
 			</div>
 		</div>
-		<script
-			src="<c:url value='/resources/default/js/page/homeIndex.js'/>"></script>
+		<script src="<c:url value='/resources/default/js/page/homeIndex.js'/>"></script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

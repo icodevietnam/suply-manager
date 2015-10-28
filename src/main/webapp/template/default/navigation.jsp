@@ -35,6 +35,12 @@
 				<div class="logo-element">IN+</div>
 			</li>
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
+				class="nav-label">Truy cập nhanh</span> <span class="fa arrow"></span></a>
+				<ul class="nav nav-second-level collapse">
+					<li><a href="<c:url value='/admin/user/list'/>">Chỉnh sửa hồ sơ</a></li>
+				</ul>
+			</li>
+			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
 				class="nav-label">Quản lý người dùng</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
 				<sec:authorize access="hasRole('ROLE_ADMIN')">

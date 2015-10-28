@@ -142,9 +142,9 @@ public class BriefController {
 	
 	@RequestMapping(value = "/brief/searchCustomer", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Customer> getCustomer(@RequestParam(value = "name") String name,@RequestParam(value = "email") String email) {
+	public List<Customer> getCustomer(@RequestParam(value = "code") String code) {
 		List<Customer> listCustomers = new ArrayList<Customer>();
-		listCustomers = briefService.searchCustomer(name, email);
+		listCustomers = briefService.searchCustomer(code);
 		return listCustomers;
 	}
 	

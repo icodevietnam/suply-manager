@@ -43,8 +43,8 @@ public class BriefServiceImpl implements BriefService {
 	}
 
 	@Override
-	public List<Customer> searchCustomer(String name, String email) {
-		return briefDao.searchCustomer(name,email);
+	public List<Customer> searchCustomer(String code) {
+		return briefDao.searchCustomer(code);
 	}
 
 	@Override
