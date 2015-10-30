@@ -34,11 +34,6 @@ public class FileAttached {
 	@Column(name = "extension")
 	private String extension;
 
-	@OneToOne(fetch = FetchType.LAZY)
-	@PrimaryKeyJoinColumn
-	@JsonIgnore
-	private Document document;
-
 	public Integer getId() {
 		return id;
 	}
@@ -70,15 +65,5 @@ public class FileAttached {
 	public void setExtension(String extension) {
 		this.extension = extension;
 	}
-
-	public Document getDocument() {
-		return document;
-	}
-
-	public void setDocument(Document document) {
-		this.document = document;
-	}
-	
-	
 
 }

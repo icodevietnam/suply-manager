@@ -36,11 +36,6 @@ public class Department {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "department", cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SELECT)
 	@JsonIgnore
-	private List<DocumentType> listDocumentTypes;
-
-	@OneToMany(fetch = FetchType.EAGER, mappedBy = "department", cascade = CascadeType.ALL)
-	@Fetch(FetchMode.SELECT)
-	@JsonIgnore
 	private List<Brief> listBrief;
 
 	public Integer getId() {
@@ -65,14 +60,6 @@ public class Department {
 
 	public void setListUsers(List<User> listUsers) {
 		this.listUsers = listUsers;
-	}
-
-	public List<DocumentType> getListDocumentTypes() {
-		return listDocumentTypes;
-	}
-
-	public void setListDocumentTypes(List<DocumentType> listDocumentTypes) {
-		this.listDocumentTypes = listDocumentTypes;
 	}
 
 	public List<Brief> getListBrief() {

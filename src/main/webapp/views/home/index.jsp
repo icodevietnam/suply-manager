@@ -9,8 +9,17 @@
 			<div class="col-lg-10">
 				<form id="searchBrief" class="form-inline">
 					<div class="input-group">
-						<span style="color:white;" class="btn-primary input-group-addon">PE</span> <input type="text"
-							name="code" id="customerCode" class="form-control" placeholder="Mã khách hàng" />
+						<span style="color: white;" class="btn-primary input-group-addon">PE</span>
+						<input type="text" name="code" id="customerCode"
+							class="form-control" placeholder="Mã khách hàng" />
+					</div>
+					<div class="input-group">
+						<input type="text" name="name" id="customerName"
+							class="form-control" placeholder="Tên khách hàng" />
+					</div>
+					<div class="input-group">
+						<input type="email" name="email" id="email" class="form-control"
+							placeholder="Email" />
 					</div>
 					<button type="button" onclick="displayTable();"
 						class="btn btn-sm btn-primary">Tìm Hồ Sơ</button>

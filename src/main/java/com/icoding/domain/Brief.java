@@ -1,22 +1,14 @@
 package com.icoding.domain;
 
 import java.util.Date;
-import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
-import javax.persistence.OneToMany;
 import javax.persistence.Table;
-
-import org.hibernate.annotations.Fetch;
-import org.hibernate.annotations.FetchMode;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Ho So
 @Entity
@@ -34,11 +26,6 @@ public class Brief {
 	@Column(name = "content", length = 2000)
 	private String content;
 
-	@OneToMany(fetch = FetchType.LAZY, mappedBy = "brief")
-	@Fetch(FetchMode.SELECT)
-	@JsonIgnore
-	private List<Document> listDocuments;
-
 	@ManyToOne
 	@JoinColumn(name = "department_id")
 	private Department department;
@@ -54,6 +41,9 @@ public class Brief {
 	@ManyToOne
 	@JoinColumn(name = "stock_id")
 	private Stock stock;
+
+	@Column(name = "is_displayed")
+	private Boolean isShowed;
 
 	public Integer getId() {
 		return id;
@@ -87,14 +77,6 @@ public class Brief {
 		this.department = department;
 	}
 
-	public List<Document> getListDocuments() {
-		return listDocuments;
-	}
-
-	public void setListDocuments(List<Document> listDocuments) {
-		this.listDocuments = listDocuments;
-	}
-
 	public Stock getStock() {
 		return stock;
 	}
@@ -117,6 +99,14 @@ public class Brief {
 
 	public void setCustomer(Customer customer) {
 		this.customer = customer;
+	}
+
+	public Boolean getIsShowed() {
+		return isShowed;
+	}
+
+	public void setIsShowed(Boolean isShowed) {
+		this.isShowed = isShowed;
 	}
 
 }

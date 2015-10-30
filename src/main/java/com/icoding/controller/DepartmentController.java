@@ -25,8 +25,8 @@ public class DepartmentController {
 
 	@Autowired
 	private UserService userService;
-	
-	@Autowired 
+
+	@Autowired
 	private DepartmentService departmentService;
 
 	@RequestMapping(value = "/deparment/getCurrentUserDepartment", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
@@ -48,29 +48,26 @@ public class DepartmentController {
 	}
 
 	// Response department as json
-	@RequestMapping(value = "/department/getAll", method = RequestMethod.GET,produces = "application/json")
+	@RequestMapping(value = "/department/getAll", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
 	public List<Department> getAll(Model model) {
 		List<Department> listDepartments = new ArrayList<Department>();
 		listDepartments = departmentService.getAll();
 		return listDepartments;
 	}
-	
+
 	@RequestMapping(value = "/department/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public String deleteDepartment(@RequestParam(value="itemId") String itemId){
+	public String deleteDepartment(@RequestParam(value = "itemId") String itemId) {
 		Integer id = Integer.parseInt(itemId);
 		Department department = departmentService.getDepartment(id);
-		if(department.getListBrief().size()==0 && department.getListDocumentTypes().size()==0 && department.getListUsers().size() == 0){
-			departmentService.delete(department);
-			return "true";
-		}
 		return "false";
 	}
-	
+
 	@RequestMapping(value = "/department/new", method = RequestMethod.POST)
 	@ResponseBody
-	public String addDepartment(@RequestParam(value="departmentName") String departmentName){
+	public String addDepartment(
+			@RequestParam(value = "departmentName") String departmentName) {
 		Department department = new Department();
 		department.setName(departmentName);
 		try {
@@ -80,12 +77,14 @@ public class DepartmentController {
 			return "false";
 		}
 	}
-	
+
 	@RequestMapping(value = "/department/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateDepartment(@RequestParam(value="departmentId") String departmentId
-			,@RequestParam(value="departmentName") String departmentName){
-		Department department = departmentService.getDepartment(Integer.parseInt(departmentId));
+	public String updateDepartment(
+			@RequestParam(value = "departmentId") String departmentId,
+			@RequestParam(value = "departmentName") String departmentName) {
+		Department department = departmentService.getDepartment(Integer
+				.parseInt(departmentId));
 		department.setName(departmentName);
 		try {
 			departmentService.update(department);
@@ -94,11 +93,13 @@ public class DepartmentController {
 			return "false";
 		}
 	}
-	
+
 	@RequestMapping(value = "/department/get", method = RequestMethod.GET)
 	@ResponseBody
-	public Department getDepartment(@RequestParam(value="itemId") String idemId){
-		Department department = departmentService.getDepartment(Integer.parseInt(idemId));
+	public Department getDepartment(
+			@RequestParam(value = "itemId") String idemId) {
+		Department department = departmentService.getDepartment(Integer
+				.parseInt(idemId));
 		return department;
 	}
 

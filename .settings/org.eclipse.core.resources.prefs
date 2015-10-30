@@ -2,6 +2,7 @@ eclipse.preferences.version=1
 encoding//src/main/java/com/icoding/controller/AuthenticationController.java=UTF-8
 encoding//src/main/java/com/icoding/controller/BriefController.java=UTF-8
 encoding//src/main/java/com/icoding/controller/BriefTypeController.java=UTF-8
+encoding//src/main/java/com/icoding/controller/DepartmentController.java=UTF-8
 encoding//src/main/java/com/icoding/controller/HomeController.java=UTF-8
 encoding//src/main/java/com/icoding/controller/QuickActionController.java=UTF-8
 encoding//src/main/java/com/icoding/controller/UserController.java=UTF-8
