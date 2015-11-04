@@ -69,5 +69,7 @@ public class Department {
 	public void setListBrief(List<Brief> listBrief) {
 		this.listBrief = listBrief;
 	}
+	
+	
 
 }

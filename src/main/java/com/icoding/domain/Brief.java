@@ -1,14 +1,22 @@
 package com.icoding.domain;
 
 import java.util.Date;
+import java.util.List;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.ManyToOne;
+import javax.persistence.OneToMany;
 import javax.persistence.Table;
+
+import org.hibernate.annotations.Fetch;
+import org.hibernate.annotations.FetchMode;
+
+import com.fasterxml.jackson.annotation.JsonIgnore;
 
 //Ho So
 @Entity
@@ -44,6 +52,19 @@ public class Brief {
 
 	@Column(name = "is_displayed")
 	private Boolean isShowed;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "brief")
+	@JsonIgnore
+	@Fetch(FetchMode.SELECT)
+	private List<Media> listImage;
+	
+	public List<Media> getListImage() {
+		return listImage;
+	}
+
+	public void setListImage(List<Media> listImage) {
+		this.listImage = listImage;
+	}
 
 	public Integer getId() {
 		return id;

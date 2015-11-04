@@ -2,29 +2,20 @@ package com.icoding.domain;
 
 import javax.persistence.Column;
 import javax.persistence.Entity;
-import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
-import javax.persistence.PrimaryKeyJoinColumn;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
 import javax.persistence.Table;
 
-import org.hibernate.annotations.GenericGenerator;
-import org.hibernate.annotations.Parameter;
-
-import com.fasterxml.jackson.annotation.JsonIgnore;
-
-//Quan Ly File
 @Entity
-@Table(name = "fileattached")
-public class FileAttached {
+@Table(name = "media")
+public class Media {
 
 	@Id
-	@GenericGenerator(name = "generator", strategy = "foreign", parameters = @Parameter(name = "property", value = "document"))
-	@GeneratedValue(generator = "generator")
-	private Integer id;
+	@GeneratedValue
+	private String id;
 
-	// Ten File
 	@Column(name = "name")
 	private String name;
 
@@ -34,11 +25,15 @@ public class FileAttached {
 	@Column(name = "extension")
 	private String extension;
 
-	public Integer getId() {
+	@ManyToOne
+	@JoinColumn(name = "brief_id")
+	private Brief brief;
+
+	public String getId() {
 		return id;
 	}
 
-	public void setId(Integer id) {
+	public void setId(String id) {
 		this.id = id;
 	}
 
@@ -64,6 +59,14 @@ public class FileAttached {
 
 	public void setExtension(String extension) {
 		this.extension = extension;
+	}
+
+	public Brief getBrief() {
+		return brief;
+	}
+
+	public void setBrief(Brief brief) {
+		this.brief = brief;
 	}
 	
 }

@@ -56,4 +56,6 @@ public class BriefType {
 		this.listBriefs = listBriefs;
 	}
 	
+	
+	
 }
