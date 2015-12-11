@@ -22,8 +22,8 @@ public class CustomerController {
 
 	@RequestMapping(value = { "/admin/customer", "/admin/customer/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
-		model.addAttribute("pageName", "Quản lý Khách hàng");
-		model.addAttribute("title", "Quản lý Khách hàng");
+		model.addAttribute("pageName", "Quản lý khách hàng");
+		model.addAttribute("title", "Quản lý khách hàng");
 		return "customer/index";
 	}
 

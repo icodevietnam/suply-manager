@@ -11,7 +11,7 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
-import com.icoding.domain.Media;
+import com.icoding.domain.File;
 import com.icoding.service.ImageService;
 
 @Controller
@@ -30,16 +30,16 @@ public class ImageController {
 	// Response image as json
 	@RequestMapping(value = "/image/getAll", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public List<Media> getAll(Model model) {
-		List<Media> listImages = new ArrayList<Media>();
+	public List<File> getAll(Model model) {
+		List<File> listImages = new ArrayList<File>();
 		listImages = imageService.getAll();
 		return listImages;
 	}
 
 	@RequestMapping(value = "/image/get", method = RequestMethod.GET)
 	@ResponseBody
-	public Media getImage(@RequestParam(value = "itemId") String idemId) {
-		Media image = imageService.getImage(Integer.parseInt(idemId));
+	public File getImage(@RequestParam(value = "itemId") String idemId) {
+		File image = imageService.getImage(Integer.parseInt(idemId));
 		return image;
 	}
 

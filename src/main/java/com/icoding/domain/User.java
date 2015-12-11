@@ -42,6 +42,9 @@ public class User {
 
 	@Column(name = "state", length = 255)
 	private String state;
+	
+	@Column(name = "email",length =255)
+	private String email;
 
 	@OneToOne(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_roles", joinColumns = { @JoinColumn(name = "user_id", referencedColumnName = "id") }, inverseJoinColumns = { @JoinColumn(name = "role_id", referencedColumnName = "id") })
@@ -138,5 +141,15 @@ public class User {
 	public void setDepartment(Department department) {
 		this.department = department;
 	}
+
+	public String getEmail() {
+		return email;
+	}
+
+	public void setEmail(String email) {
+		this.email = email;
+	}
+	
+	
 
 }

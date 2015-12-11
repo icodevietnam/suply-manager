@@ -11,9 +11,6 @@ $(function() {
 			content:{
 				required:"Nội dung không được để trống"
 			}
-		},
-		submitHandler : function(form) {
-			form.submit();
 		}
 	});
 	
@@ -27,9 +24,6 @@ $(function() {
 			content:{
 				required:"Nội dung không được để trống"
 			}
-		},
-		submitHandler : function(form) {
-			form.submit();
 		}
 	});
 });

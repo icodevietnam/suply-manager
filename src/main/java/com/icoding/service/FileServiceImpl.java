@@ -6,39 +6,39 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
-import com.icoding.dao.ImageDao;
+import com.icoding.dao.FileDao;
 import com.icoding.domain.File;
 
 @Service
 @Transactional
-public class ImageServiceImpl implements ImageService {
+public class FileServiceImpl implements FileService {
 
 	@Autowired
-	private ImageDao imageDao;
+	private FileDao fileDao;
 
 	@Override
 	public List<File> getAll() {
-		return imageDao.getAll();
+		return fileDao.getAll();
 	}
 
 	@Override
-	public File getImage(int id) {
-		return imageDao.getImage(id);
+	public File getFile(int id) {
+		return fileDao.getFile(id);
 	}
 
 	@Override
-	public void saveOrUpdate(File image) {
-		imageDao.saveOrUpdate(image);
+	public void saveOrUpdate(File file) {
+		fileDao.saveOrUpdate(file);
 	}
 
 	@Override
-	public void delete(File image) {
-		imageDao.delete(image);
+	public void delete(File file) {
+		fileDao.delete(file);
 	}
 
 	@Override
-	public void update(File image) {
-		imageDao.update(image);
+	public void update(File file) {
+		fileDao.update(file);
 	}
 
 }

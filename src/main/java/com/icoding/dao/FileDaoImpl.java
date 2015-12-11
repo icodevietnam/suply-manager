@@ -12,7 +12,7 @@ import org.springframework.stereotype.Repository;
 import com.icoding.domain.File;
 
 @Repository
-public class ImageDaoImpl implements ImageDao {
+public class FileDaoImpl implements FileDao {
 
 	@Autowired
 	private SessionFactory sessionFactory;
@@ -22,39 +22,40 @@ public class ImageDaoImpl implements ImageDao {
 	}
 
 	@Override
-	public File getImage(int id) {
-		List<File> imageLists = new ArrayList<File>();
+	public File getFile(int id) {
+		List<File> fileLists = new ArrayList<File>();
 		Query query = getCurrentSession().createQuery(
-				"from Image d where d.id = :id");
+				"from File d where d.id = :id");
 		query.setParameter("id", id);
-		imageLists = query.list();
-		if (imageLists.size() > 0)
-			return imageLists.get(0);
+		fileLists = query.list();
+		if (fileLists.size() > 0)
+			return fileLists.get(0);
 		else
 			return null;
 	}
 
 	@Override
 	public List<File> getAll() {
-		List<File> listImages = new ArrayList<File>();
-		listImages = getCurrentSession().createCriteria(File.class).list();
-		return listImages;
+		List<File> listFiles = new ArrayList<File>();
+		listFiles = getCurrentSession().createCriteria(
+				File.class).list();
+		return listFiles;
 	}
 
 	@Override
-	public void saveOrUpdate(File image) {
-		getCurrentSession().saveOrUpdate(image);
+	public void saveOrUpdate(File file) {
+		getCurrentSession().saveOrUpdate(file);
 
 	}
 
 	@Override
-	public void delete(File image) {
-		getCurrentSession().delete(image);
+	public void delete(File file) {
+		getCurrentSession().delete(file);
 	}
 
 	@Override
-	public void update(File image) {
-		getCurrentSession().update(image);
+	public void update(File file) {
+		getCurrentSession().update(file);
 	}
 
 }

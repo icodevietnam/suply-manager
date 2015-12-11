@@ -2,15 +2,15 @@ package com.icoding.service;
 
 import java.util.List;
 
-import com.icoding.domain.Media;
+import com.icoding.domain.File;
 
 public interface ImageService {
 	
-	List<Media> getAll();
-	Media getImage(int id);
-	void saveOrUpdate(Media image);
-	void delete(Media image);
+	List<File> getAll();
+	File getImage(int id);
+	void saveOrUpdate(File image);
+	void delete(File image);
 	
-	void update(Media image);
+	void update(File image);
 
 }

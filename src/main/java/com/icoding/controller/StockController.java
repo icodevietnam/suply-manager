@@ -22,8 +22,8 @@ public class StockController {
 
 	@RequestMapping(value = { "/admin/stock", "/admin/stock/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
-		model.addAttribute("pageName", "Quản lý Kho");
-		model.addAttribute("title", "Quản lý Kho");
+		model.addAttribute("pageName", "Quản Lý Kho");
+		model.addAttribute("title", "Quản Lý Kho");
 		return "stock/index";
 	}
 

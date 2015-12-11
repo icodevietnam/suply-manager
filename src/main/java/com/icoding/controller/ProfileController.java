@@ -41,8 +41,8 @@ public class ProfileController {
 		User currentUser = userService.getUser(userDetails.getUsername());
 		List<Department> allDepartments = departmentService.getAll();
 		model.addAttribute("currentUser", currentUser);
-		model.addAttribute("pageName", "Thông tin người dùng");
-		model.addAttribute("title", "Thông tin người dùng");
+		model.addAttribute("pageName", "Thông tin người dùng");
+		model.addAttribute("title", "Thông tin người dùng");
 		model.addAttribute("allDepartments", allDepartments);
 		return "profile/index";
 	}
@@ -54,8 +54,8 @@ public class ProfileController {
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		User currentUser = userService.getUser(userDetails.getUsername());
 		model.addAttribute("currentUser", currentUser);
-		model.addAttribute("pageName", "Đổi mật khẩu người dùng");
-		model.addAttribute("title", "Thông tin người dùng");
+		model.addAttribute("pageName", "Đổi mật khẩu người dùng");
+		model.addAttribute("title", "Thông tin người dùng");
 		return "profile/changePassword";
 	}
 
@@ -69,7 +69,7 @@ public class ProfileController {
 		User currentUser = userService.getUser(userDetails.getUsername());
 		currentUser.setPassword(encoder.encode(newPassword));
 		userService.saveOrUpdate(currentUser);
-		model.addAttribute("success", "Bạn đã đổi mật khẩu thành công");
+		model.addAttribute("success", "BaÌ£n Ä‘aÌƒ Ä‘Ã´Ì‰i mÃ¢Ì£t khÃ¢Ì‰u thaÌ€nh cÃ´ng");
 		return "profile/changePassword";
 	}
 

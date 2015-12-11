@@ -2,18 +2,18 @@ package com.icoding.dao;
 
 import java.util.List;
 
-import com.icoding.domain.Media;
+import com.icoding.domain.File;
 
 public interface ImageDao {
 
-	Media getImage(int id);
+	File getImage(int id);
 
-	List<Media> getAll();
+	List<File> getAll();
 
-	void saveOrUpdate(Media image);
+	void saveOrUpdate(File image);
 
-	void delete(Media image);
+	void delete(File image);
 
-	void update(Media image);
+	void update(File image);
 
 }

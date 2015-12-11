@@ -56,13 +56,13 @@ public class Brief {
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "brief")
 	@JsonIgnore
 	@Fetch(FetchMode.SELECT)
-	private List<Media> listImage;
+	private List<File> listImage;
 	
-	public List<Media> getListImage() {
+	public List<File> getListImage() {
 		return listImage;
 	}
 
-	public void setListImage(List<Media> listImage) {
+	public void setListImage(List<File> listImage) {
 		this.listImage = listImage;
 	}
 
