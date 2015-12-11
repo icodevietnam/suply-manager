@@ -24,6 +24,9 @@ public class File {
 
 	@Column(name = "extension")
 	private String extension;
+	
+	@Column(name = "absolutely_path")
+	private String absolutelyPath;
 
 	@ManyToOne
 	@JoinColumn(name = "brief")
@@ -68,6 +71,14 @@ public class File {
 
 	public void setBrief(Brief brief) {
 		this.brief = brief;
+	}
+
+	public String getAbsolutelyPath() {
+		return absolutelyPath;
+	}
+
+	public void setAbsolutelyPath(String absolutelyPath) {
+		this.absolutelyPath = absolutelyPath;
 	}
 	
 }

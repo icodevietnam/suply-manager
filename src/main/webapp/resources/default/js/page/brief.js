@@ -41,6 +41,8 @@ function displayTable() {
 				dataDepartments.push([
 						i,value.content,value.customer.name,value.department.name,value.stock.name,value.briefType.name,
 						"<button class='btn btn-sm btn-primary' onclick='editItem("
+						+ value.id + ")' >Xem hình ảnh</button>",
+						"<button class='btn btn-sm btn-primary' onclick='editItem("
 								+ value.id + ")' >Sửa</button>",
 						"<button class='btn btn-sm btn-danger' onclick='deleteItem("
 								+ value.id + ")'>Xoá</button>" ]);
@@ -66,6 +68,8 @@ function displayTable() {
 					"sTitle" : "Kho"
 				}, {
 					"sTitle" : "Loại Hồ Sơ"
+				},  {
+					"sTitle" : "Hình ảnh"
 				},  {
 					"sTitle" : "Sửa"
 				}, {
@@ -106,6 +110,8 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+			},
+			complete:function(){
 				displayTable();
 			}
 		});
@@ -114,26 +120,17 @@ function deleteItem(id) {
 
 function editedItem() {
 	if($("#updateItemForm").valid()){
-		var briefId = $("#updateItemForm .briefId").val();
-		var content = $("#updateItemForm .content").val();
-		var briefTypeId = $("#updateItemForm .briefTypeBox").val();
-		var customerId = $("#updateItemForm .customerBox").val();
-		var stockId = $("#updateItemForm .stockBox").val();
-		var departmentId = $("#updateItemForm .departmentBox").val();
+		var formData = new FormData($("#updateItemForm")[0]);
 		$.ajax({
 			url : "/suply-manager/brief/update",
 			type : "POST",
-			data : {
-				briefId : briefId,
-				content : content,
-				briefTypeId : briefTypeId,
-				customerId : customerId,
-				stockId : stockId,
-				departmentId : departmentId
-			},
+			data : formData,
 			dataType : "JSON",
 			success : function(response) {
+			},
+			complete:function(){
 				displayTable();
+				$("#newItem").modal("hide");
 			}
 		});
 	}
@@ -144,27 +141,19 @@ function editedItem() {
 function insertItem() {
 	
 	if($("#newItemForm").valid()){
-		var content = $("#content").val();
-		var briefTypeId = $("#briefTypeBox").val();
-		var customerId = $("#customerBox").val();
-		var stockId = $("#stockBox").val();
-		var departmentId = $("#departmentBox").val();
+		var formData = new FormData($("#newItemForm")[0]);
 		$.ajax({
 			url : "/suply-manager/brief/new",
 			type : "POST",
-			data : {
-				content : content,
-				briefTypeId : briefTypeId,
-				customerId : customerId,
-				stockId : stockId,
-				departmentId : departmentId
-			},
+			data : formData,
 			dataType : "JSON",
 			success : function(response) {
+			},
+			complete:function(){
 				displayTable();
+				$("#newItem").modal("hide");
 			}
 		});
 	}
-	$("#newItem").modal("hide");
 	$("#content").val(" ");
 }

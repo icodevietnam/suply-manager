@@ -22,7 +22,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="newItem" tabindex="-1" stock="dialog"
+		<div class="modal fade" id="newItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" stock="document">
 				<div class="modal-content">
@@ -81,6 +81,24 @@
 								</select>
 							</div>
 						</div>
+						<div class="form-group">
+							<label for="department" class="col-sm-2 control-label">Hình 1</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="file1" type="file" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="department" class="col-sm-2 control-label">Hình 2</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="file2" type="file" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="department" class="col-sm-2 control-label">Hình 3</label>
+							<div class="col-sm-10">
+								<input class="form-control" name="file3" type="file" />
+							</div>
+						</div>
 					</div>
 					<div class="modal-footer">
 						<button type="button" onclick="insertItem();" class="btn btn-primary">Lưu</button>
@@ -90,7 +108,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="updateItem" tabindex="-1" stock="dialog"
+		<div class="modal fade" id="updateItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" stock="document">
 				<div class="modal-content">
@@ -148,6 +166,24 @@
 										<option value="${department.id}">${department.name}</option>
 									</c:forEach>
 								</select>
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="department" class="col-sm-2 control-label">Hình 1</label>
+							<div class="col-sm-10">
+								<input class="file1 form-control" name="file1" type="file" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="department" class="col-sm-2 control-label">Hình 2</label>
+							<div class="col-sm-10">
+								<input class="file2 form-control" name="file2" type="file" />
+							</div>
+						</div>
+						<div class="form-group">
+							<label for="department" class="col-sm-2 control-label">Hình 3</label>
+							<div class="col-sm-10">
+								<input class="file3 form-control" name="file3" type="file" />
 							</div>
 						</div>
 					</div>
