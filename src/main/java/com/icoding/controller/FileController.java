@@ -21,11 +21,12 @@ public class FileController {
 
 	@Autowired
 	private FileService fileService;
-	
+
 	@Autowired
 	private BriefService briefService;
 
-	@RequestMapping(value = { "/admin/file", "/admin/file/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = { "/admin/file",
+			"/admin/file/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
 		model.addAttribute("pageName", "QuaÌ‰n lyÌ� Kho");
 		model.addAttribute("title", "QuaÌ‰n lyÌ� Kho");
@@ -41,7 +42,6 @@ public class FileController {
 		return listFiles;
 	}
 
-
 	@RequestMapping(value = "/file/get", method = RequestMethod.GET)
 	@ResponseBody
 	public File getFile(@RequestParam(value = "itemId") String idemId) {
@@ -49,11 +49,22 @@ public class FileController {
 		return file;
 	}
 
-	@RequestMapping(value = "/file/getBrief",method = RequestMethod.POST)
+	@RequestMapping(value = "/file/getBrief", method = RequestMethod.POST)
 	@ResponseBody
-	public List<File> getFileByBrief(@RequestParam(value = "briefId")String briefId){
+	public List<File> getFileByBrief(@RequestParam(value = "briefId") String briefId) {
 		Brief brief = briefService.getBrief(Integer.parseInt(briefId));
 		List<File> listFiles = brief.getListImage();
 		return listFiles;
 	}
+
+	@RequestMapping(value = "/file/delete", method = RequestMethod.POST)
+	@ResponseBody
+	public String deleteBrief(@RequestParam(value = "fileId") String fileId) {
+		Integer id = Integer.parseInt(fileId);
+		File file = fileService.getFile(id);
+		file.setBrief(null);
+		fileService.delete(file);
+		return "true";
+	}
+
 }

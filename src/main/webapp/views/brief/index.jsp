@@ -188,9 +188,8 @@
 						</div>
 						
 						<div class="form-group">
-							<label for="department" class="col-sm-2 control-label">File đã tồn tại:</label>
-							<div class="row">
-								<input class="file3 form-control" name="file3" type="file" />
+							<div class="showFile row">
+								
 							</div>
 						</div>
 					</div>

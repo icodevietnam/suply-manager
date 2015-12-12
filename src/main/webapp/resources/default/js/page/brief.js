@@ -95,6 +95,7 @@ function editItem(id) {
 			$("#updateItemForm .stockBox").selectpicker('val',""+response.stock.id);
 			$("#updateItemForm .briefTypeBox").selectpicker('val',""+response.briefType.id);
 			$("#updateItemForm .customerBox").selectpicker('val',""+response.customer.id);
+			showListfile(id);
 			$("#updateItem").modal("show");
 		}
 	});
@@ -162,6 +163,76 @@ function insertItem() {
 	$("#content").val(" ");
 }
 
-function showListfile() {
-	
+function showListfile(briefId) {
+	$.ajax({
+		url : "/suply-manager/file/getBrief",
+		type : "POST",
+		data : {
+			briefId : briefId
+		},
+		dataType : "JSON",
+		success : function(response) {
+			$('.showFile').empty();
+			$.each(response,function(key,value){
+				$('.showFile').append("<div class='col-lg-3'>" +
+						"<img style='width:140px;margin-left:2px;margin-bottom:5px;' src='" + value.absolutelyPath + "' />" +
+						"<button type='button' class='btn btn-danger' onclick ='deleteImage("+value.id+","+briefId+")' > Xoá </button>" +
+				"</div>");
+			});
+		},
+	});
+}
+
+function deleteImage(imageId,briefId){
+	if (confirm("Are you sure you want to proceed?") == true) {
+		$.ajax({
+			url : "/suply-manager/file/delete",
+			type : "POST",
+			data : {
+				fileId : imageId
+			},
+			dataType : "imageId",
+			success : function(response) {
+			},
+			complete:function(){
+				showListfile(briefId);
+			}
+		});
+	}
+}
+
+function readUrl1(input){
+	 if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        
+        reader.onload = function (e) {
+            $('.imageDemo1').attr('src', e.target.result);
+        }
+        
+        reader.readAsDataURL(input.files[0]);
+    }
+}
+
+function readUrl2(input){
+	 if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       
+       reader.onload = function (e) {
+           $('.imageDemo2').attr('src', e.target.result);
+       }
+       
+       reader.readAsDataURL(input.files[0]);
+   }
+}
+
+function readUrl3(input){
+	 if (input.files && input.files[0]) {
+       var reader = new FileReader();
+       
+       reader.onload = function (e) {
+           $('.imageDemo3').attr('src', e.target.result);
+       }
+       
+       reader.readAsDataURL(input.files[0]);
+   }
 }
