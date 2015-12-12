@@ -10,7 +10,6 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.icoding.domain.Customer;
-import com.icoding.domain.Customer;
 
 @Repository
 public class CustomerDaoImpl implements CustomerDao {
@@ -23,11 +22,10 @@ public class CustomerDaoImpl implements CustomerDao {
 	}
 
 	@Override
-	public Customer getCustomer(int id) {
+	public Customer getCustomer(String code) {
 		List<Customer> customerLists = new ArrayList<Customer>();
-		Query query = getCurrentSession().createQuery(
-				"from Customer d where d.id = :id");
-		query.setParameter("id", id);
+		Query query = getCurrentSession().createQuery("from Customer d where d.code = :code");
+		query.setParameter("code", code);
 		customerLists = query.list();
 		if (customerLists.size() > 0)
 			return customerLists.get(0);
@@ -38,8 +36,7 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public List<Customer> getAll() {
 		List<Customer> listCustomers = new ArrayList<Customer>();
-		listCustomers = getCurrentSession().createCriteria(Customer.class)
-				.list();
+		listCustomers = getCurrentSession().createCriteria(Customer.class).list();
 		return listCustomers;
 	}
 

@@ -4,6 +4,8 @@ import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
+import javax.servlet.http.HttpServletRequest;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -11,16 +13,19 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
+import org.springframework.web.multipart.MultipartFile;
 
 import com.icoding.domain.Brief;
 import com.icoding.domain.BriefType;
 import com.icoding.domain.Customer;
 import com.icoding.domain.Department;
 import com.icoding.domain.Stock;
+import com.icoding.process.ImageProcess;
 import com.icoding.service.BriefService;
 import com.icoding.service.BriefTypeService;
 import com.icoding.service.CustomerService;
 import com.icoding.service.DepartmentService;
+import com.icoding.service.FileService;
 import com.icoding.service.StockService;
 
 @Controller
@@ -41,7 +46,11 @@ public class BriefController {
 	@Autowired
 	private StockService stockService;
 
-	@RequestMapping(value = { "/admin/brief", "/admin/brief/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@Autowired
+	private FileService fileService;
+
+	@RequestMapping(value = { "/admin/brief",
+			"/admin/brief/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
 		List<BriefType> listBriefTypes = new ArrayList<BriefType>();
 		listBriefTypes = briefTypeService.getAll();
@@ -76,32 +85,41 @@ public class BriefController {
 		brief.setDepartment(null);
 		brief.setStock(null);
 		brief.setCustomer(null);
-		
-		//Delete this brief anymore
-		
+
+		// Delete this brief anymore
+
 		briefService.delete(brief);
 		return "true";
 	}
 
 	@RequestMapping(value = "/brief/new", method = RequestMethod.POST)
 	@ResponseBody
-	public String addBrief(@RequestParam(value = "content") String content,
-			@RequestParam(value = "stockId") String stockId,
-			@RequestParam(value = "briefTypeId") String briefTypeId,
-			@RequestParam(value = "customerId") String customerId,
-			@RequestParam(value = "departmentId") String departmentId) {
+	public String addBrief(HttpServletRequest request, @RequestParam(value = "content") String content,
+			@RequestParam(value = "stockBox") String stockBox,
+			@RequestParam(value = "briefTypeBox") String briefTypeBox,
+			@RequestParam(value = "customerBox") String customerBox,
+			@RequestParam(value = "departmentBox") String departmentBox,
+			@RequestParam(value = "file1") MultipartFile file1, @RequestParam(value = "file2") MultipartFile file2,
+			@RequestParam(value = "file2") MultipartFile file3) {
 		Brief brief = new Brief();
 		brief.setContent(content);
 		brief.setCreateDate(new Date());
-		brief.setBriefType(briefTypeService.getBriefType(Integer
-				.parseInt(briefTypeId)));
-		brief.setStock(stockService.getStock(Integer.parseInt(stockId)));
-		brief.setCustomer(customerService.getCustomer(Integer
-				.parseInt(customerId)));
-		brief.setDepartment(departmentService.getDepartment(Integer
-				.parseInt(departmentId)));
+		brief.setBriefType(briefTypeService.getBriefType(Integer.parseInt(briefTypeBox)));
+		brief.setStock(stockService.getStock(Integer.parseInt(stockBox)));
+		brief.setCustomer(customerService.getCustomer(customerBox));
+		brief.setDepartment(departmentService.getDepartment(Integer.parseInt(departmentBox)));
+		ImageProcess imageProcess = new ImageProcess();
 		try {
 			briefService.saveOrUpdate(brief);
+			if (!file1.isEmpty()) {
+				imageProcess.uploadImage(file1, request, fileService, brief);
+			}
+			if (!file2.isEmpty()) {
+				imageProcess.uploadImage(file2, request, fileService, brief);
+			}
+			if (!file3.isEmpty()) {
+				imageProcess.uploadImage(file3, request, fileService, brief);
+			}
 			return "true";
 		} catch (Exception e) {
 			return "false";
@@ -110,21 +128,16 @@ public class BriefController {
 
 	@RequestMapping(value = "/brief/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateBrief(@RequestParam(value = "briefId") String briefId,
-			String content,
-			@RequestParam(value = "stockId") String stockId,
-			@RequestParam(value = "briefTypeId") String briefTypeId,
+	public String updateBrief(@RequestParam(value = "briefId") String briefId, String content,
+			@RequestParam(value = "stockId") String stockId, @RequestParam(value = "briefTypeId") String briefTypeId,
 			@RequestParam(value = "customerId") String customerId,
 			@RequestParam(value = "departmentId") String departmentId) {
 		Brief brief = briefService.getBrief(Integer.parseInt(briefId));
 		brief.setContent(content);
-		brief.setBriefType(briefTypeService.getBriefType(Integer
-				.parseInt(briefTypeId)));
+		brief.setBriefType(briefTypeService.getBriefType(Integer.parseInt(briefTypeId)));
 		brief.setStock(stockService.getStock(Integer.parseInt(stockId)));
-		brief.setCustomer(customerService.getCustomer(Integer
-				.parseInt(customerId)));
-		brief.setDepartment(departmentService.getDepartment(Integer
-				.parseInt(departmentId)));
+		brief.setCustomer(customerService.getCustomer(customerId));
+		brief.setDepartment(departmentService.getDepartment(Integer.parseInt(departmentId)));
 		try {
 			briefService.update(brief);
 			return "true";
@@ -139,7 +152,7 @@ public class BriefController {
 		Brief brief = briefService.getBrief(Integer.parseInt(idemId));
 		return brief;
 	}
-	
+
 	@RequestMapping(value = "/brief/searchCustomer", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Customer> getCustomer(@RequestParam(value = "code") String code) {
@@ -147,7 +160,7 @@ public class BriefController {
 		listCustomers = briefService.searchCustomer(code);
 		return listCustomers;
 	}
-	
+
 	@RequestMapping(value = "/brief/searchBrief", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Brief> getBriefNe(@RequestParam(value = "cusId") String cusId) {

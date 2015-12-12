@@ -6,12 +6,14 @@ import javax.persistence.Column;
 import javax.persistence.Entity;
 import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
 import javax.persistence.Id;
 import javax.persistence.OneToMany;
 import javax.persistence.Table;
 
 import org.hibernate.annotations.Fetch;
 import org.hibernate.annotations.FetchMode;
+import org.hibernate.annotations.GenericGenerator;
 
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
@@ -21,10 +23,9 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 public class Customer {
 
 	@Id
-	@GeneratedValue
-	private Integer id;
-
-	@Column(name = "code", length = 14)
+	@GenericGenerator(name = "seq_customer_code", strategy = "com.icoding.generator.CustomerCodeGenerator")
+	@GeneratedValue(generator = "seq_customer_code", strategy = GenerationType.SEQUENCE)
+	@Column(name = "code", unique = true, nullable = false, length = 20)
 	private String code;
 
 	// Ten khach hang
@@ -48,14 +49,6 @@ public class Customer {
 	@JsonIgnore
 	@Fetch(FetchMode.SELECT)
 	private List<Brief> listBriefs;
-
-	public Integer getId() {
-		return id;
-	}
-
-	public void setId(Integer id) {
-		this.id = id;
-	}
 
 	public String getName() {
 		return name;
@@ -112,6 +105,5 @@ public class Customer {
 	public void setCode(String code) {
 		this.code = code;
 	}
-	
 
 }

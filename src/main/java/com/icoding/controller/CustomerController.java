@@ -38,9 +38,8 @@ public class CustomerController {
 
 	@RequestMapping(value = "/customer/delete", method = RequestMethod.POST)
 	@ResponseBody
-	public String deleteCustomer(@RequestParam(value = "itemId") String itemId) {
-		Integer id = Integer.parseInt(itemId);
-		Customer customer = customerService.getCustomer(id);
+	public String deleteCustomer(@RequestParam(value = "code") String code) {
+		Customer customer = customerService.getCustomer(code);
 		if (customer.getListBriefs().size() == 0) {
 			customerService.delete(customer);
 			return "true";
@@ -66,6 +65,7 @@ public class CustomerController {
 			customerService.saveOrUpdate(customer);
 			return "true";
 		} catch (Exception e) {
+			e.printStackTrace();
 			return "false";
 		}
 	}
@@ -73,14 +73,13 @@ public class CustomerController {
 	@RequestMapping(value = "/customer/update", method = RequestMethod.POST)
 	@ResponseBody
 	public String updateCustomer(
-			@RequestParam(value = "customerId") String customerId,
+			@RequestParam(value = "code") String code,
 			@RequestParam(value = "customerName") String customerName,
 			@RequestParam(value = "customerBirthDay") String customerBirthDay,
 			@RequestParam(value = "customerEmail") String customerEmail,
 			@RequestParam(value = "customerAddress") String customerAddress,
 			@RequestParam(value = "customerPhone") String customerPhone) {
-		Customer customer = customerService.getCustomer(Integer
-				.parseInt(customerId));
+		Customer customer = customerService.getCustomer(code);
 		customer.setName(customerName);
 		customer.setBirthDate(customerBirthDay);
 		customer.setEmail(customerEmail);
@@ -96,9 +95,8 @@ public class CustomerController {
 
 	@RequestMapping(value = "/customer/get", method = RequestMethod.GET)
 	@ResponseBody
-	public Customer getCustomer(@RequestParam(value = "itemId") String idemId) {
-		Customer customer = customerService.getCustomer(Integer
-				.parseInt(idemId));
+	public Customer getCustomer(@RequestParam(value = "code") String code) {
+		Customer customer = customerService.getCustomer(code);
 		return customer;
 	}
 }

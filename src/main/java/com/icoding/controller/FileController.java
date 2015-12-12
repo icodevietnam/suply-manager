@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.icoding.domain.Brief;
 import com.icoding.domain.File;
+import com.icoding.service.BriefService;
 import com.icoding.service.FileService;
 
 @Controller
@@ -19,6 +21,9 @@ public class FileController {
 
 	@Autowired
 	private FileService fileService;
+	
+	@Autowired
+	private BriefService briefService;
 
 	@RequestMapping(value = { "/admin/file", "/admin/file/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
@@ -44,4 +49,11 @@ public class FileController {
 		return file;
 	}
 
+	@RequestMapping(value = "/file/getBrief",method = RequestMethod.POST)
+	@ResponseBody
+	public List<File> getFileByBrief(@RequestParam(value = "briefId")String briefId){
+		Brief brief = briefService.getBrief(Integer.parseInt(briefId));
+		List<File> listFiles = brief.getListImage();
+		return listFiles;
+	}
 }

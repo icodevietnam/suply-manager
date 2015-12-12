@@ -59,13 +59,6 @@
 					<li><a href="<c:url value='/admin/stock/list'/>">Quản lý Kho</a></li>
 				</ul>
 			</li>
-			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
-				class="nav-label">Quản lý Đơn từ</span> <span class="fa arrow"></span></a>
-				<ul class="nav nav-second-level collapse">
-					<li><a href="<c:url value='/admin/document/list'/>">Quản lý Đơn từ</a></li>
-					<li><a href="<c:url value='/admin/documentType/list'/>">Quản lý Loại Đơn từ</a></li>
-				</ul>
-			</li>
 		</ul>
 	</div>
 	<script src="<c:url value='/resources/default/js/navigation.js'/>"></script>

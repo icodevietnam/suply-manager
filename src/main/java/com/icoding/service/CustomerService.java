@@ -7,7 +7,7 @@ import com.icoding.domain.Customer;
 public interface CustomerService {
 	
 	List<Customer> getAll();
-	Customer getCustomer(int id);
+	Customer getCustomer(String code);
 	void saveOrUpdate(Customer customer);
 	void delete(Customer customer);
 	

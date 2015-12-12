@@ -22,7 +22,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="newItem" tabindex="-1" customer="dialog"
+		<div class="modal fade" id="newItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" customer="document">
 				<div class="modal-content">
@@ -74,7 +74,7 @@
 				</div>
 			</div>
 		</div>
-		<div class="modal fade" id="updateItem" tabindex="-1" customer="dialog"
+		<div class="modal fade" id="updateItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
 			<div class="modal-dialog" customer="document">
 				<div class="modal-content">
@@ -87,7 +87,7 @@
 					</div>
 					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" method="POST">
 					<div class="modal-body">
-								<input type="text" class="customerId form-control hide" id="customerId" name="customerId" >
+								<input type="text" class="code form-control hide" id="code" name="code" >
 								<div class="form-group">
 									<label for="name" class="col-sm-2 control-label">Tên</label>
 									<div class="col-sm-10">

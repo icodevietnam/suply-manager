@@ -9,6 +9,7 @@ import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.web.multipart.MultipartFile;
 
+import com.icoding.domain.Brief;
 import com.icoding.domain.File;
 import com.icoding.service.FileService;
 
@@ -16,7 +17,7 @@ public class ImageProcess {
 	
 	private static final Logger logger = LoggerFactory.getLogger(ImageProcess.class);
 
-	public File uploadImage(MultipartFile file, HttpServletRequest request, FileService fileService) {
+	public File uploadImage(MultipartFile file, HttpServletRequest request, FileService fileService,Brief brief) {
 		File image = null;
 		if (!file.isEmpty()) {
 			try {
@@ -37,9 +38,10 @@ public class ImageProcess {
 				String ext = strArray[strArray.length - 1];
 				image = new File();
 				image.setExtension(ext);
-				image.setAbsolutelyPath("/project/resources/default/images/" + file.getOriginalFilename());
-				image.setName(file.getOriginalFilename());
+				image.setAbsolutelyPath("/suply-manager/resources/default/images/" + file.getOriginalFilename());
+				image.setName(brief.getBriefType().getName()+"-"+brief.getCustomer().getName()+"-"+brief.getCustomer().getCode());
 				image.setPath(serverFile.toString());
+				image.setBrief(brief);
 				fileService.saveOrUpdate(image);
 
 				logger.info("Server File Location=" + serverFile.getAbsolutePath());

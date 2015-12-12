@@ -6,7 +6,7 @@ import com.icoding.domain.Customer;
 
 public interface CustomerDao {
 
-	Customer getCustomer(int id);
+	Customer getCustomer(String code);
 
 	List<Customer> getAll();
 

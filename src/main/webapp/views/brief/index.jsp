@@ -24,7 +24,7 @@
 		</div>
 		<div class="modal fade" id="newItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" stock="document">
+			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
@@ -56,7 +56,7 @@
 							<div class="col-sm-10">
 								<select id="customerBox" name="customerBox" class="form-control combobox" data-live-search="true" data-style="btn-white">
 									<c:forEach var="customer" items="${listCustomers}">
-										<option value="${customer.id}">${customer.name} - Đ/c: ${customer.address}</option>
+										<option value="${customer.code}">${customer.name} - Đ/c: ${customer.address}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -110,7 +110,7 @@
 		</div>
 		<div class="modal fade" id="updateItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" stock="document">
+			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
@@ -143,7 +143,7 @@
 							<div class="col-sm-10">
 								<select id="customerBox" name="customerBox" class="customerBox form-control combobox" data-style="btn-white">
 									<c:forEach var="customer" items="${listCustomers}">
-										<option value="${customer.id}">${customer.name} - Đ/c: ${customer.address}</option>
+										<option value="${customer.code}">${customer.name} - Đ/c: ${customer.address}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -183,6 +183,13 @@
 						<div class="form-group">
 							<label for="department" class="col-sm-2 control-label">Hình 3</label>
 							<div class="col-sm-10">
+								<input class="file3 form-control" name="file3" type="file" />
+							</div>
+						</div>
+						
+						<div class="form-group">
+							<label for="department" class="col-sm-2 control-label">File đã tồn tại:</label>
+							<div class="row">
 								<input class="file3 form-control" name="file3" type="file" />
 							</div>
 						</div>

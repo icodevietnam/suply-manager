@@ -40,10 +40,8 @@ public class UserController {
 
 	@RequestMapping(value = "/user/checkPasswordExist", method = RequestMethod.GET)
 	@ResponseBody
-	public String checkPasswordExist(
-			@RequestParam(value = "oldpassword") String oldPassword) {
-		Authentication auth = SecurityContextHolder.getContext()
-				.getAuthentication();
+	public String checkPasswordExist(@RequestParam(value = "oldpassword") String oldPassword) {
+		Authentication auth = SecurityContextHolder.getContext().getAuthentication();
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		User currentUser = userService.getUser(userDetails.getUsername());
 		if (encoder.matches(oldPassword, currentUser.getPassword()))
@@ -52,7 +50,8 @@ public class UserController {
 			return "true";
 	}
 
-	@RequestMapping(value = { "/admin/user", "/admin/user/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = { "/admin/user",
+			"/admin/user/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	@Secured("ROLE_ADMIN")
 	public String displayPage(Model model) {
 		List<Department> listDepartments = new ArrayList<Department>();
@@ -78,14 +77,10 @@ public class UserController {
 	@RequestMapping(value = "/user/new", method = RequestMethod.POST)
 	@ResponseBody
 	public String addUser(@RequestParam(value = "password") String password,
-			@RequestParam(value = "userName") String userName,
-			@RequestParam(value = "fullname") String fullname,
-			@RequestParam(value = "birthDate") String birthDate,
-			@RequestParam(value = "address") String address,
-			@RequestParam(value = "roleId") String roleId,
-			@RequestParam(value = "phone") String phone,
-			@RequestParam(value = "state") String state,
-			@RequestParam(value = "gender") String gender,
+			@RequestParam(value = "userName") String userName, @RequestParam(value = "fullname") String fullname,
+			@RequestParam(value = "birthDate") String birthDate, @RequestParam(value = "address") String address,
+			@RequestParam(value = "roleId") String roleId, @RequestParam(value = "phone") String phone,
+			@RequestParam(value = "state") String state, @RequestParam(value = "gender") String gender,
 			@RequestParam(value = "departmentId") String departmentId) {
 
 		User user = new User();
@@ -96,8 +91,9 @@ public class UserController {
 		user.setAddress(address);
 		user.setRole(roleService.getRole(Integer.parseInt(roleId)));
 		user.setState(state);
-		user.setDepartment(departmentService.getDepartment(Integer
-				.parseInt(departmentId)));
+		if (!departmentId.isEmpty()) {
+			user.setDepartment(departmentService.getDepartment(Integer.parseInt(departmentId)));
+		}
 		if (gender.equalsIgnoreCase("true")) {
 			user.setGender(true);
 		}
@@ -134,35 +130,41 @@ public class UserController {
 	@RequestMapping(value = "/user/update", method = RequestMethod.POST)
 	@ResponseBody
 	public String updateUser(@RequestParam(value = "userId") String userId,
-			@RequestParam(value = "fullname") String fullname,
-			@RequestParam(value = "birthDate") String birthDate,
-			@RequestParam(value = "address") String address,
-			@RequestParam(value = "roleId") String roleId,
-			@RequestParam(value = "phone") String phone,
-			@RequestParam(value = "state") String state,
-			@RequestParam(value = "gender") String gender,
-			@RequestParam(value = "departmentId") String departmentId) {
+			@RequestParam(value = "fullname") String fullname, @RequestParam(value = "birthDate") String birthDate,
+			@RequestParam(value = "address") String address, @RequestParam(value = "roleId") String roleId,
+			@RequestParam(value = "phone") String phone, @RequestParam(value = "state") String state,
+			@RequestParam(value = "gender") String gender, @RequestParam(value = "departmentId") String departmentId) {
 		User user = userService.getUser(Integer.parseInt(userId));
 		user.setFullName(fullname);
 		user.setBirthDate(birthDate);
 		user.setAddress(address);
 		user.setRole(roleService.getRole(Integer.parseInt(roleId)));
 		user.setState(state);
-		user.setDepartment(departmentService.getDepartment(Integer
-				.parseInt(departmentId)));
-		if (gender.equalsIgnoreCase("true")) {
+		if (!departmentId.isEmpty()) {
+			user.setDepartment(departmentService.getDepartment(Integer.parseInt(departmentId)));
+		}
+		if (gender.equalsIgnoreCase("true"))
+
+		{
 			user.setGender(true);
 		}
 		user.setGender(false);
 		user.setPhone(phone);
-		try {
+		try
+
+		{
 			userService.update(user);
 			return "true";
-		} catch (Exception e) {
+		} catch (
+
+		Exception e)
+
+		{
 			return "false";
 		}
+
 	}
-	
+
 	@RequestMapping(value = "/user/changePassword", method = RequestMethod.POST)
 	@ResponseBody
 	public String updateUser(@RequestParam(value = "userId") String userId,

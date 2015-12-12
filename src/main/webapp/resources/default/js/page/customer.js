@@ -84,12 +84,12 @@ function displayTable() {
 			$.each(response, function(key, value) {
 				i++;
 				dataDepartments.push([
-						i,
+						i,value.code,
 						value.name,value.birthDate,value.email,value.address,value.phone,
-						"<button class='btn btn-sm btn-primary' onclick='editItem("
-								+ value.id + ")' >Sửa</button>",
-						"<button class='btn btn-sm btn-danger' onclick='deleteItem("
-								+ value.id + ")'>Xoá</button>" ]);
+						"<button class='btn btn-sm btn-primary' onclick=\"editItem('"
+								+ value.code + "')\" >Sửa</button>",
+						"<button class='btn btn-sm btn-danger' onclick=\"deleteItem('"
+								+ value.code + "')\">Xoá</button>" ]);
 			});
 			$('#tblDepartment').dataTable({
 				"bDestroy" : true,
@@ -102,7 +102,9 @@ function displayTable() {
 				"aaSorting" : [],
 				"aoColumns" : [ {
 					"sTitle" : "STT"
-				}, {
+				},{
+					"sTitle" : "Mã"
+				},{
 					"sTitle" : "Tên"
 				}, {
 					"sTitle" : "Ngày sinh"
@@ -122,16 +124,16 @@ function displayTable() {
 	});
 }
 
-function editItem(id) {
+function editItem(code) {
 	$.ajax({
 		url : "/suply-manager/customer/get",
 		type : "GET",
 		data : {
-			itemId : id
+			code : code
 		},
 		dataType : "JSON",
 		success : function(response) {
-			$("#updateItemForm .customerId").val(response.id);
+			$("#updateItemForm .code").val(response.code);
 			$("#updateItemForm .customerName").val(response.name);
 			$("#updateItemForm .customerBirthDay").val(response.birthDate);
 			$("#updateItemForm .customerEmail").val(response.email);
@@ -142,13 +144,13 @@ function editItem(id) {
 	});
 }
 
-function deleteItem(id) {
+function deleteItem(code) {
 	if (confirm("Are you sure you want to proceed?") == true) {
 		$.ajax({
 			url : "/suply-manager/customer/delete",
 			type : "POST",
 			data : {
-				itemId : id
+				code : code
 			},
 			dataType : "JSON",
 			success : function(response) {
@@ -160,7 +162,7 @@ function deleteItem(id) {
 
 function editedItem() {
 	if($("#updateItemForm").valid()){
-		var customerId = $("#updateItemForm .customerId").val();
+		var code = $("#updateItemForm .code").val();
 		var customerName = $("#updateItemForm .customerName").val();
 		var customerBirthDay = $("#updateItemForm .customerBirthDay").val();
 		var customerEmail = $("#updateItemForm .customerEmail").val();
@@ -170,7 +172,7 @@ function editedItem() {
 			url : "/suply-manager/customer/update",
 			type : "POST",
 			data : {
-				customerId : customerId,
+				code : code,
 				customerName : customerName,
 				customerBirthDay : customerBirthDay,
 				customerEmail : customerEmail,
@@ -183,7 +185,7 @@ function editedItem() {
 			}
 		});
 	}
-	$("#updateItemForm .customerId").val(" ");
+	$("#updateItemForm .code").val(" ");
 	$("#updateItemForm .customerName").val(" ");
 	$("#updateItemForm .customerBirthDay").val(" ");
 	$("#updateItemForm .customerEmail").val(" ");

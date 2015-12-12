@@ -125,6 +125,8 @@ function editedItem() {
 			url : "/suply-manager/brief/update",
 			type : "POST",
 			data : formData,
+			contentType:false,
+			processData:false,
 			dataType : "JSON",
 			success : function(response) {
 			},
@@ -147,6 +149,8 @@ function insertItem() {
 			type : "POST",
 			data : formData,
 			dataType : "JSON",
+			contentType:false,
+			processData:false,
 			success : function(response) {
 			},
 			complete:function(){
@@ -156,4 +160,8 @@ function insertItem() {
 		});
 	}
 	$("#content").val(" ");
+}
+
+function showListfile() {
+	
 }
