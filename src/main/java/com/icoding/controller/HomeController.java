@@ -15,16 +15,13 @@ import org.springframework.web.bind.annotation.RequestMethod;
 @Controller
 public class HomeController {
 
-	private static final Logger logger = LoggerFactory
-			.getLogger(HomeController.class);
-
 	/**
 	 * Simply selects the home view to render by returning its name.
 	 */
 	@RequestMapping(value = { "/admin/home", "/admin" }, method = RequestMethod.GET)
 	public String adminHome(Locale locale, Model model) {
-		logger.warn("Test xem co vao khong ?");
-		model.addAttribute("pageName", "Quản trị người dùng");
+		model.addAttribute("pageName", "Trang chính");
+		model.addAttribute("title", "Trang chính");
 		return "home";
 	}
 

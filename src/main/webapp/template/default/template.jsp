@@ -20,6 +20,7 @@
     <link href="<c:url value='/resources/default/css/datepicker.css'/>" rel="stylesheet">
     <link href="<c:url value='/resources/default/css/style.css'/>" rel="stylesheet">
     <script src="<c:url value='/resources/default/js/jquery-2.1.1.js'/>"></script>
+    <script src="<c:url value='/resources/default/js/moment.js'/>"></script>
     <script src="<c:url value='/resources/default/js/bootstrap-select.js'/>"></script>
     <script src="<c:url value='/resources/default/js/bootstrap-datepicker.js'/>"></script>
     <script src="<c:url value='/resources/default/js/jquery.dataTables.js'/>"></script>

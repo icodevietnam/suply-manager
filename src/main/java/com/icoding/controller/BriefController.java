@@ -85,11 +85,14 @@ public class BriefController {
 		brief.setDepartment(null);
 		brief.setStock(null);
 		brief.setCustomer(null);
-
-		// Delete this brief anymore
-
-		briefService.delete(brief);
-		return "true";
+		if(brief.getListImage().size() == 0) 
+		{
+			briefService.delete(brief);
+			return "true";
+		}
+		else {
+			return "false";
+		}
 	}
 
 	@RequestMapping(value = "/brief/new", method = RequestMethod.POST)
@@ -128,18 +131,31 @@ public class BriefController {
 
 	@RequestMapping(value = "/brief/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateBrief(@RequestParam(value = "briefId") String briefId, String content,
-			@RequestParam(value = "stockId") String stockId, @RequestParam(value = "briefTypeId") String briefTypeId,
-			@RequestParam(value = "customerId") String customerId,
-			@RequestParam(value = "departmentId") String departmentId) {
+	public String updateBrief(HttpServletRequest request,@RequestParam(value = "briefId") String briefId, @RequestParam(value = "content") String content,
+			@RequestParam(value = "stockBox") String stockBox,
+			@RequestParam(value = "briefTypeBox") String briefTypeBox,
+			@RequestParam(value = "customerBox") String customerBox,
+			@RequestParam(value = "departmentBox") String departmentBox,
+			@RequestParam(value = "file1") MultipartFile file1, @RequestParam(value = "file2") MultipartFile file2,
+			@RequestParam(value = "file2") MultipartFile file3) {
 		Brief brief = briefService.getBrief(Integer.parseInt(briefId));
 		brief.setContent(content);
-		brief.setBriefType(briefTypeService.getBriefType(Integer.parseInt(briefTypeId)));
-		brief.setStock(stockService.getStock(Integer.parseInt(stockId)));
-		brief.setCustomer(customerService.getCustomer(customerId));
-		brief.setDepartment(departmentService.getDepartment(Integer.parseInt(departmentId)));
+		brief.setBriefType(briefTypeService.getBriefType(Integer.parseInt(briefTypeBox)));
+		brief.setStock(stockService.getStock(Integer.parseInt(stockBox)));
+		brief.setCustomer(customerService.getCustomer(customerBox));
+		brief.setDepartment(departmentService.getDepartment(Integer.parseInt(departmentBox)));
+		ImageProcess imageProcess = new ImageProcess();
 		try {
 			briefService.update(brief);
+			if (!file1.isEmpty()) {
+				imageProcess.uploadImage(file1, request, fileService, brief);
+			}
+			if (!file2.isEmpty()) {
+				imageProcess.uploadImage(file2, request, fileService, brief);
+			}
+			if (!file3.isEmpty()) {
+				imageProcess.uploadImage(file3, request, fileService, brief);
+			}
 			return "true";
 		} catch (Exception e) {
 			return "false";
@@ -151,6 +167,19 @@ public class BriefController {
 	public Brief getBrief(@RequestParam(value = "itemId") String idemId) {
 		Brief brief = briefService.getBrief(Integer.parseInt(idemId));
 		return brief;
+	}
+	
+	@RequestMapping(value = "/brief/searchName",method = RequestMethod.GET)
+	@ResponseBody
+	public List<Brief> searchBriefByName(@RequestParam(value = "searchName") String searchName){
+		List<Brief> listBrief = briefService.getAll();
+		List<Brief> filterBrief = new ArrayList<Brief>();
+		for(Brief brief :  listBrief){
+			if(brief.getCustomer().getName().toLowerCase().contains(searchName.toLowerCase())||brief.getCustomer().getCode().toLowerCase().contains(searchName.toLowerCase())){
+				filterBrief.add(brief);
+			}
+		}
+		return filterBrief;
 	}
 
 	@RequestMapping(value = "/brief/searchCustomer", method = RequestMethod.GET)
@@ -168,4 +197,6 @@ public class BriefController {
 		listBriefs = briefService.searchBrief(Integer.parseInt(cusId));
 		return listBriefs;
 	}
+	
+	
 }

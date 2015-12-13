@@ -85,18 +85,21 @@
 							<label for="department" class="col-sm-2 control-label">Hình 1</label>
 							<div class="col-sm-10">
 								<input class="form-control" name="file1" type="file" />
+								<img width="200px" class="imageDemo1" src="#" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="department" class="col-sm-2 control-label">Hình 2</label>
 							<div class="col-sm-10">
 								<input class="form-control" name="file2" type="file" />
+								<img width="200px" class="imageDemo2" src="#" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="department" class="col-sm-2 control-label">Hình 3</label>
 							<div class="col-sm-10">
 								<input class="form-control" name="file3" type="file" />
+								<img width="200px" class="imageDemo3" src="#" />
 							</div>
 						</div>
 					</div>
@@ -172,18 +175,21 @@
 							<label for="department" class="col-sm-2 control-label">Hình 1</label>
 							<div class="col-sm-10">
 								<input class="file1 form-control" name="file1" type="file" />
+								<img width="200px" class="imageDemo1" src="#" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="department" class="col-sm-2 control-label">Hình 2</label>
 							<div class="col-sm-10">
 								<input class="file2 form-control" name="file2" type="file" />
+								<img width="200px" class="imageDemo2" src="#" />
 							</div>
 						</div>
 						<div class="form-group">
 							<label for="department" class="col-sm-2 control-label">Hình 3</label>
 							<div class="col-sm-10">
 								<input class="file3 form-control" name="file3" type="file" />
+								<img width="200px" class="imageDemo3" src="#" />
 							</div>
 						</div>
 						

@@ -1,5 +1,9 @@
 $(function() {
 	displayTable();
+	
+	$('.imageDemo1').attr('src',"/suply-manager/resources/default/images/no-image.jpg");
+	$('.imageDemo2').attr('src',"/suply-manager/resources/default/images/no-image.jpg");
+	$('.imageDemo3').attr('src',"/suply-manager/resources/default/images/no-image.jpg");
 	$('.combobox').selectpicker();
 	$("#newItemForm").validate({
 		rules : {
@@ -26,6 +30,17 @@ $(function() {
 			}
 		}
 	});
+	
+	$("input[name='file1']").change(function(){
+		  readUrl1(this);
+	  });
+	$("input[name='file2']").change(function(){
+		  readUrl2(this);
+	  });
+	$("input[name='file3']").change(function(){
+		  readUrl3(this);
+	  });
+	  
 });
 
 function displayTable() {
@@ -94,7 +109,7 @@ function editItem(id) {
 			$("#updateItemForm .departmentBox").selectpicker('val',""+response.department.id);
 			$("#updateItemForm .stockBox").selectpicker('val',""+response.stock.id);
 			$("#updateItemForm .briefTypeBox").selectpicker('val',""+response.briefType.id);
-			$("#updateItemForm .customerBox").selectpicker('val',""+response.customer.id);
+			$("#updateItemForm .customerBox").selectpicker('val',""+response.customer.code);
 			showListfile(id);
 			$("#updateItem").modal("show");
 		}
@@ -111,6 +126,9 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response == false){
+					alert("Không thể xóa vì trong hồ sơ có hình ảnh");
+				}
 			},
 			complete:function(){
 				displayTable();
@@ -175,7 +193,8 @@ function showListfile(briefId) {
 			$('.showFile').empty();
 			$.each(response,function(key,value){
 				$('.showFile').append("<div class='col-lg-3'>" +
-						"<img style='width:140px;margin-left:2px;margin-bottom:5px;' src='" + value.absolutelyPath + "' />" +
+						"<a href='" + value.absolutelyPath + "' >" +
+						"<img style='width:140px;margin-left:2px;margin-bottom:5px;' src='" + value.absolutelyPath + "' /> </a>" +
 						"<button type='button' class='btn btn-danger' onclick ='deleteImage("+value.id+","+briefId+")' > Xoá </button>" +
 				"</div>");
 			});

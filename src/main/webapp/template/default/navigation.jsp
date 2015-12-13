@@ -37,7 +37,7 @@
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
 				class="nav-label">Truy cập nhanh</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
-					<li><a href="<c:url value='/admin/user/list'/>">Chỉnh sửa hồ sơ</a></li>
+					<li><a href="<c:url value='/admin/home'/>">Báo cáo về hồ sơ</a></li>
 				</ul>
 			</li>
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
