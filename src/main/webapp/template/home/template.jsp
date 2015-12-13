@@ -6,7 +6,6 @@
 <!DOCTYPE html>
 <html>
 <head>
-	<link rel="stylesheet" type="text/css" href="style.css" />
 	<meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 	<title>${title}</title>
 	<link href="<c:url value='/resources/default/css/bootstrap.min.css'/>" rel="stylesheet">

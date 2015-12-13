@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletRequest;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
@@ -85,12 +86,10 @@ public class BriefController {
 		brief.setDepartment(null);
 		brief.setStock(null);
 		brief.setCustomer(null);
-		if(brief.getListImage().size() == 0) 
-		{
+		if (brief.getListImage().size() == 0) {
 			briefService.delete(brief);
 			return "true";
-		}
-		else {
+		} else {
 			return "false";
 		}
 	}
@@ -131,8 +130,8 @@ public class BriefController {
 
 	@RequestMapping(value = "/brief/update", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateBrief(HttpServletRequest request,@RequestParam(value = "briefId") String briefId, @RequestParam(value = "content") String content,
-			@RequestParam(value = "stockBox") String stockBox,
+	public String updateBrief(HttpServletRequest request, @RequestParam(value = "briefId") String briefId,
+			@RequestParam(value = "content") String content, @RequestParam(value = "stockBox") String stockBox,
 			@RequestParam(value = "briefTypeBox") String briefTypeBox,
 			@RequestParam(value = "customerBox") String customerBox,
 			@RequestParam(value = "departmentBox") String departmentBox,
@@ -168,14 +167,15 @@ public class BriefController {
 		Brief brief = briefService.getBrief(Integer.parseInt(idemId));
 		return brief;
 	}
-	
-	@RequestMapping(value = "/brief/searchName",method = RequestMethod.GET)
+
+	@RequestMapping(value = "/brief/searchName", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Brief> searchBriefByName(@RequestParam(value = "searchName") String searchName){
+	public List<Brief> searchBriefByName(@RequestParam(value = "searchName") String searchName) {
 		List<Brief> listBrief = briefService.getAll();
 		List<Brief> filterBrief = new ArrayList<Brief>();
-		for(Brief brief :  listBrief){
-			if(brief.getCustomer().getName().toLowerCase().contains(searchName.toLowerCase())||brief.getCustomer().getCode().toLowerCase().contains(searchName.toLowerCase())){
+		for (Brief brief : listBrief) {
+			if (brief.getCustomer().getName().toLowerCase().contains(searchName.toLowerCase())
+					|| brief.getCustomer().getCode().toLowerCase().contains(searchName.toLowerCase())) {
 				filterBrief.add(brief);
 			}
 		}
@@ -184,10 +184,22 @@ public class BriefController {
 
 	@RequestMapping(value = "/brief/searchCustomer", method = RequestMethod.GET)
 	@ResponseBody
-	public List<Customer> getCustomer(@RequestParam(value = "code") String code) {
-		List<Customer> listCustomers = new ArrayList<Customer>();
-		listCustomers = briefService.searchCustomer(code);
-		return listCustomers;
+	public List<Customer> getCustomer(@RequestParam(value = "code") String code,
+			@RequestParam(value = "name") String name, @RequestParam(value = "email") String email) {
+		/*
+		 * List<Customer> listCustomers = new ArrayList<Customer>();
+		 * listCustomers = briefService.searchCustomer(code);
+		 */
+		List<Customer> listCustomers = customerService.getAll();
+		List<Customer> filterCustomer = new ArrayList<Customer>();
+		for (Customer customer : listCustomers) {
+			if (customer.getCode().toLowerCase().contains(code.toLowerCase())
+					|| customer.getName().toLowerCase().contains(name.toLowerCase())
+					|| customer.getEmail().toLowerCase().contains(email.toLowerCase())) {
+				filterCustomer.add(customer);
+			}
+		}
+		return filterCustomer;
 	}
 
 	@RequestMapping(value = "/brief/searchBrief", method = RequestMethod.GET)
@@ -199,4 +211,19 @@ public class BriefController {
 	}
 	
 	
+	@RequestMapping(value = "/brief/{code}", method = RequestMethod.GET)
+	public String getBriefCode(Model model,@PathVariable(value = "code") String code) {
+		Customer customer = customerService.getCustomer(code);
+		List<Brief> listBriefs = briefService.getAll();
+		List<Brief> filterBrief = new ArrayList<Brief>();
+		for(Brief brief : listBriefs){
+			if(brief.getCustomer().getCode().toLowerCase().equalsIgnoreCase(code.toLowerCase())){
+				filterBrief.add(brief);
+			}
+		}
+		model.addAttribute("listBrief",filterBrief);
+		model.addAttribute("title", "Hồ Sơ của : " + customer.getName());
+		return "home/showBrief";
+	}
+
 }

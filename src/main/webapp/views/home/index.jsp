@@ -18,7 +18,7 @@
 							class="form-control" placeholder="Tên khách hàng" />
 					</div>
 					<div class="input-group">
-						<input type="email" name="email" id="email" class="form-control"
+						<input type="email" name="email" id="customerEmail" class="form-control"
 							placeholder="Email" />
 					</div>
 					<button type="button" onclick="displayTable();"
