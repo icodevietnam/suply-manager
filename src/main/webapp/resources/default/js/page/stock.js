@@ -137,17 +137,16 @@ function editedItem() {
 			dataType : "JSON",
 			success : function(response) {
 				displayTable();
+				$("#updateItemForm .stockId").val(" ");
+				$("#updateItemForm .stockName").val(" ");
+				$("#updateItemForm .stockPosition").val(" ");
+				$("#updateItem").modal("hide");
 			}
 		});
 	}
-	$("#updateItemForm .stockId").val(" ");
-	$("#updateItemForm .stockName").val(" ");
-	$("#updateItemForm .stockPosition").val(" ");
-	$("#updateItem").modal("hide");
 }
 
 function insertItem() {
-	
 	if($("#newItemForm").valid()){
 		var stockName = $("#stockName").val();
 		var stockPosition = $("#stockPosition").val();
@@ -160,11 +159,13 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+			},
+			complete : function(){
 				displayTable();
+				$("#newItem").modal("hide");
+				$("#stockName").val(" ");
+				$("#stockPosition").val(" ");
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#stockName").val(" ");
-	$("#stockPosition").val(" ");
 }

@@ -11,7 +11,7 @@ $(function() {
 		},
 		messages : {
 			roleName:{
-				required:"Name không được để trống"
+				required:"Tên không được để trống"
 			},
 			roleDescription:{
 				required:"Diễn giải không được để trống"
@@ -33,7 +33,7 @@ $(function() {
 		},
 		messages : {
 			roleName:{
-				required:"Name không được để trống"
+				required:"Tên không được để trống"
 			},
 			roleDescription:{
 				required:"Diễn giải không được để trống"
@@ -137,13 +137,13 @@ function editedItem() {
 			dataType : "JSON",
 			success : function(response) {
 				displayTable();
+				$("#updateItemForm .roleId").val(" ");
+				$("#updateItemForm .roleName").val(" ");
+				$("#updateItemForm .roleDescription").val(" ");
+				$("#updateItem").modal("hide");
 			}
 		});
 	}
-	$("#updateItemForm .roleId").val(" ");
-	$("#updateItemForm .roleName").val(" ");
-	$("#updateItemForm .roleDescription").val(" ");
-	$("#updateItem").modal("hide");
 }
 
 function insertItem() {
@@ -161,10 +161,10 @@ function insertItem() {
 			dataType : "JSON",
 			success : function(response) {
 				displayTable();
+				$("#newItem").modal("hide");
+				$("#roleName").val(" ");
+				$("#roleDescription").val(" ");
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#roleName").val(" ");
-	$("#roleDescription").val(" ");
 }

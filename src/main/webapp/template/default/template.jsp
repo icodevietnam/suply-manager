@@ -26,6 +26,7 @@
     <script src="<c:url value='/resources/default/js/jquery.dataTables.js'/>"></script>
     <script src="<c:url value='/resources/default/js/dataTables.bootstrap.js'/>"></script>
     <script src="<c:url value='/resources/default/js/jquery.validate.js'/>"></script>
+    <script src="<c:url value='/resources/default/js/jquery.canvasjs.min.js'/>"></script>
 </head>
 <body>
     <div id="wrapper">

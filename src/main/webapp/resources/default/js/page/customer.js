@@ -21,10 +21,19 @@ $(function() {
 		},
 		messages : {
 			customerName:{
-				required:"Name không được để trống"
+				required:"Tên không được để trống"
 			},
-			customerPosition:{
-				required:"Diễn giải không được để trống"
+			customerBirthDay:{
+				required:"Ngày sinh không được để trống"
+			},
+			customerEmail : {
+				required:"Thư điện tử không được để trống"
+			},
+			customerAddress : {
+				required:"Địa chỉ không được để trống",
+			},
+			customerPhone : {
+				required:"Điện thoại không được để trống"
 			}
 		},
 		submitHandler : function(form) {
@@ -35,19 +44,19 @@ $(function() {
 	$("#updateItemForm").validate({
 		rules : {
 			customerName:{
-				required:"Tên không được để trống"
+				required:true
 			},
 			customerBirthDay:{
-				required:"Ngày sinh không được để trống"
+				required:true
 			},
 			customerEmail:{
-				required:"Email không được để trống"
+				required:true
 			},
 			customerAddress:{
-				required:"Địa chỉ không được để trống"
+				required:true
 			},
 			customerPhone:{
-				required:"Điện thoại không được để trống"
+				required:true
 			}
 		},
 		messages : {
@@ -55,16 +64,16 @@ $(function() {
 				required:"Tên không được để trống"
 			},
 			customerBirthDay:{
-				required:"Ngày sinh không được để trống"
+				required:"Ngày sinh không được để trống"
 			},
-			customerEmail:{
-				required:"Email không được để trống"
+			customerEmail : {
+				required:"Thư điện tử không được để trống"
 			},
-			customerAddress:{
-				required:"Địa chỉ không được để trống"
+			customerAddress : {
+				required:"Địa chỉ không được để trống",
 			},
-			customerPhone:{
-				required:"Điện thoại không được để trống"
+			customerPhone : {
+				required:"Điện thoại không được để trống"
 			}
 		},
 		submitHandler : function(form) {
@@ -182,16 +191,16 @@ function editedItem() {
 			dataType : "JSON",
 			success : function(response) {
 				displayTable();
+				$("#updateItemForm .code").val(" ");
+				$("#updateItemForm .customerName").val(" ");
+				$("#updateItemForm .customerBirthDay").val(" ");
+				$("#updateItemForm .customerEmail").val(" ");
+				$("#updateItemForm .customerAddress").val(" ");
+				$("#updateItemForm .customerPhone").val(" ");
+				$("#updateItem").modal("hide");
 			}
 		});
 	}
-	$("#updateItemForm .code").val(" ");
-	$("#updateItemForm .customerName").val(" ");
-	$("#updateItemForm .customerBirthDay").val(" ");
-	$("#updateItemForm .customerEmail").val(" ");
-	$("#updateItemForm .customerAddress").val(" ");
-	$("#updateItemForm .customerPhone").val(" ");
-	$("#updateItem").modal("hide");
 }
 
 function insertItem() {
@@ -215,13 +224,13 @@ function insertItem() {
 			dataType : "JSON",
 			success : function(response) {
 				displayTable();
+				$("#newItem").modal("hide");
+				$("#customerName").val("");
+				$("#customerBirthDay").val("");
+				$("#customerEmail").val("");
+				$("#customerAddress").val("");
+				$("#customerPhone").val("");
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#customerName").val("");
-	$("#customerBirthDay").val("");
-	$("#customerEmail").val("");
-	$("#customerAddress").val("");
-	$("#customerPhone").val("");
 }

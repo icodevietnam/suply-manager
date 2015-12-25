@@ -8,7 +8,7 @@ $(function() {
 		},
 		messages : {
 			departmentName:{
-				required:"Name không được để trống"
+				required:"Tên không được để trống"
 			}
 		},
 		submitHandler : function(form) {
@@ -24,7 +24,7 @@ $(function() {
 		},
 		messages : {
 			departmentName:{
-				required:"Name không được để trống"
+				required:"Tên không được để trống"
 			}
 		},
 		submitHandler : function(form) {
@@ -122,12 +122,12 @@ function editedItem() {
 			dataType : "JSON",
 			success : function(response) {
 				displayTable();
+				$("#updateItem").modal("hide");
+				$("#updateItemForm .departmentId").val(" ");
+				$("#updateItemForm .departmentName").val(" ");
 			}
 		});
 	}
-	$("#updateItem").modal("hide");
-	$("#updateItemForm .departmentId").val(" ");
-	$("#updateItemForm .departmentName").val(" ");
 }
 
 function insertItem() {
@@ -143,9 +143,9 @@ function insertItem() {
 			dataType : "JSON",
 			success : function(response) {
 				displayTable();
+				$("#newItem").modal("hide");
+				$("#departmentName").val(" ");
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#departmentName").val(" ");
 }

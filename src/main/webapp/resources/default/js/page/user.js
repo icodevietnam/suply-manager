@@ -156,16 +156,16 @@ function insertItem() {
 				if(response ==="false"){
 					alert("Không thể delete được vì đây là admin root");
 				} 
+				$("#newItem").modal("hide");
+				$("#userName").val("");
+				$("#fullname").val("");
+				$("#birthDate").val("");
+				$("#address").val("");
+				$("#phone").val("");
 				displayTable();
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#userName").val("");
-	$("#fullname").val("");
-	$("#birthDate").val("");
-	$("#address").val("");
-	$("#phone").val("");
 }
 
 function displayTable() {
@@ -306,16 +306,16 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				$("#userName").val("");
+				$("#fullname").val("");
+				$("#birthDate").val("");
+				$("#address").val("");
+				$("#phone").val("");
+				$("#updateItem").modal("hide");
 				displayTable();
 			}
 		});
 	}
-	$("#userName").val("");
-	$("#fullname").val("");
-	$("#birthDate").val("");
-	$("#address").val("");
-	$("#phone").val("");
-	$("#updateItem").modal("hide");
 }
 
 function changePass(id){

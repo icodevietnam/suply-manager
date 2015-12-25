@@ -5,7 +5,7 @@
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 		<div class="row">
-			<div class="col-lg-8">
+			<div class="col-lg-12">
 				<div class="ibox">
 					<div class="ibox-content">
 						<a href="<c:url value='/admin/brief/list'/>" class="btn-link">

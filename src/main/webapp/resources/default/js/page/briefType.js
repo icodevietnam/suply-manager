@@ -119,13 +119,13 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				$("#updateItemForm .briefTypeId").val(" ");
+				$("#updateItemForm .briefTypeName").val(" ");
+				$("#updateItem").modal("hide");
 				displayTable();
 			}
 		});
 	}
-	$("#updateItemForm .briefTypeId").val(" ");
-	$("#updateItemForm .briefTypeName").val(" ");
-	$("#updateItem").modal("hide");
 }
 
 function insertItem() {
@@ -140,10 +140,10 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				$("#newItem").modal("hide");
+				$("#briefTypeName").val(" ");
 				displayTable();
 			}
 		});
 	}
-	$("#newItem").modal("hide");
-	$("#briefTypeName").val(" ");
 }
