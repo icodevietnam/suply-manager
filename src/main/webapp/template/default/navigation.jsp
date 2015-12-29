@@ -39,6 +39,7 @@
 				<ul class="nav nav-second-level collapse">
 					<li><a href="<c:url value='/admin/home'/>">Tìm nhanh hồ sơ</a></li>
 					<li><a href="<c:url value='/admin/report'/>">Báo cáo</a></li>
+					<li><a href="<c:url value='/admin/report'/>">Mượn trả hồ sơ</a></li>
 				</ul>
 			</li>
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
