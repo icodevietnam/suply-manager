@@ -11,21 +11,23 @@
 						<form class="form-inline">
 							<div class="form-group">
 								<label for="exampleInputName2">Từ</label> 
-								<input type="text" class="form-control" id="exampleInputName2"
-									placeholder="Jane Doe">
+								<input type="text" class="form-control" id="fromDate"
+									placeholder="">
 							</div>
 							<div class="form-group">
 								<label for="exampleInputEmail2">Đến</label> <input
-									type="email" class="form-control" id="exampleInputEmail2"
-									placeholder="jane.doe@example.com">
+									type="email" class="form-control" id="toDate"
+									placeholder="">
 							</div>
 							<div class="form-group">
-								<label for="exampleInputEmail2">Loại hồ sơ</label> <input
-									type="email" class="form-control" id="exampleInputEmail2"
-									placeholder="jane.doe@example.com">
+								<label for="exampleInputEmail2">Loại hồ sơ</label>
+								<select id="stateBox" class="combobox form-control" name="stateBox" data-style="btn-white">
+									<option value="active">Đang hoạt động</option>
+									<option value="absent">Nghỉ phép</option>
+									<option value="resign">Từ chức</option>
+								</select>
 							</div>
-							<button type="submit" class="btn btn-primary">Send
-								invitation</button>
+							<button type="submit" class="btn btn-primary">Tìm hồ sơ</button>
 						</form>
 					</div>
 				</div>
