@@ -17,12 +17,12 @@
 						</div>
 						<button class='btn btn-primary' type="button"
 							onclick='searchData();'>Search</button>
-						<a href="<c:url />" >Export Data</a>
-					<div class="table-responsive">
-						<table id="tblBrief"
-							class="table table-bordered table-hover table-striped">
-						</table>
-					</div>
+						<a href="<c:url />">Export Data</a>
+						<div class="table-responsive">
+							<table id="tblBrief"
+								class="table table-bordered table-hover table-striped">
+							</table>
+						</div>
 					</div>
 				</div>
 			</div>

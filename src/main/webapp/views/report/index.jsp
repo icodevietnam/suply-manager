@@ -5,40 +5,32 @@
 <tiles:insertDefinition name="defaultTemplate">
 	<tiles:putAttribute name="body">
 		<div class="row">
-			<div class="col-lg-6">
+			<div class="col-lg-8">
 				<div class="ibox">
 					<div class="ibox-content">
-						<a href="<c:url value='/admin/role/list'/>" class="btn-link">
-							<h2>Quản lý Báo Cáo</h2>
-						</a>
-						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Tạo
-							mới</button>
-						<div class="table-responsive">
-							<table id="tblDepartment"
-								class="table table-bordered table-hover table-striped">
-							</table>
-						</div>
-					</div>
-				</div>
-			</div>
-			<div class="col-lg-6">
-				<div class="ibox">
-					<div class="ibox-content">
-						<a href="<c:url value='/admin/role/list'/>" class="btn-link">
-							<h2>Quản lý Báo Cáo</h2>
-						</a>
-						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Tạo
-							mới</button>
-						<div class="table-responsive">
-							<table id="tblDepartment"
-								class="table table-bordered table-hover table-striped">
-							</table>
-						</div>
+						<form class="form-inline">
+							<div class="form-group">
+								<label for="exampleInputName2">Từ</label> 
+								<input type="text" class="form-control" id="exampleInputName2"
+									placeholder="Jane Doe">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail2">Đến</label> <input
+									type="email" class="form-control" id="exampleInputEmail2"
+									placeholder="jane.doe@example.com">
+							</div>
+							<div class="form-group">
+								<label for="exampleInputEmail2">Loại hồ sơ</label> <input
+									type="email" class="form-control" id="exampleInputEmail2"
+									placeholder="jane.doe@example.com">
+							</div>
+							<button type="submit" class="btn btn-primary">Send
+								invitation</button>
+						</form>
 					</div>
 				</div>
 			</div>
 		</div>
-		<script
-			src="<c:url value='/resources/default/js/page/report.js'/>"></script>
+		<script src="<c:url value='/resources/default/js/page/report.js'/>"></script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>
