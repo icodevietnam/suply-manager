@@ -22,9 +22,9 @@
 							<div class="form-group">
 								<label for="exampleInputEmail2">Loại hồ sơ</label>
 								<select id="stateBox" class="combobox form-control" name="stateBox" data-style="btn-white">
-									<option value="active">Đang hoạt động</option>
-									<option value="absent">Nghỉ phép</option>
-									<option value="resign">Từ chức</option>
+									<c:forEach var="briefType" items="${listBrieftType}">
+										<option value="${briefType.id}">${briefType.name}</option>
+									</c:forEach>
 								</select>
 							</div>
 							<button type="submit" class="btn btn-primary">Tìm hồ sơ</button>
