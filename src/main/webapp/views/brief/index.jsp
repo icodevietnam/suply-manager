@@ -33,7 +33,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Thêm Hồ Sơ</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/stock/new'/>" method="POST">
+					<form id="newItemForm" class="form-horizontal" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">Nội dung</label>
@@ -56,7 +56,7 @@
 							<div class="col-sm-10">
 								<select id="customerBox" name="customerBox" class="form-control combobox" data-live-search="true" data-style="btn-white">
 									<c:forEach var="customer" items="${listCustomers}">
-										<option value="${customer.code}">${customer.name} - Đ/c: ${customer.address}</option>
+										<option value="${customer.code}">${customer.code} - ${customer.name} - Đ/c: ${customer.address}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -122,7 +122,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Sửa Hồ Sơ</h4>
 					</div>
-					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" method="POST">
+					<form id="updateItemForm" class="form-horizontal" method="POST">
 					<div class="modal-body">
 								<input type="text" class="briefId form-control hide" id="briefId" name="briefId" >
 								<div class="form-group">
@@ -201,6 +201,33 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" onclick="editedItem();" class="btn btn-primary">Chỉnh sửa</button>
+						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+					</div>
+					</form>
+				</div>
+			</div>
+		</div>
+		<div class="modal fade" id="showImage" tabindex="-1" role="dialog"
+			aria-labelledby="myModalLabel">
+			<div class="modal-dialog" role="document">
+				<div class="modal-content">
+					<div class="modal-header">
+						<button type="button" class="close" data-dismiss="modal"
+							aria-label="Close">
+							<span aria-hidden="true">&times;</span>
+						</button>
+						<h4 class="modal-title" id="myModalLabel">Sửa Hồ Sơ</h4>
+					</div>
+					<form id="showImageForm" class="form-horizontal" method="POST">
+					<div class="modal-body">
+						<input type="text" class="briefId form-control hide" id="briefId" name="briefId" >
+						<div class="form-group">
+							<div class="showFile row">
+								
+							</div>
+						</div>
+					</div>
+					<div class="modal-footer">
 						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 					</div>
 					</form>

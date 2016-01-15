@@ -11,8 +11,8 @@
 						<a href="<c:url value='/admin/customer/list'/>" class="btn-link">
 							<h2>Quản lý Khách hàng</h2>
 						</a>
-						<button data-toggle="modal" data-target="#newItem"class="btn btn-sm btn-primary">Tạo
-							mới</button>
+						<button data-toggle="modal" data-target="#newItem"
+							class="btn btn-sm btn-primary">Tạo mới</button>
 						<div class="table-responsive">
 							<table id="tblDepartment"
 								class="table table-bordered table-hover table-striped">
@@ -24,7 +24,7 @@
 		</div>
 		<div class="modal fade" id="newItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" customer="document">
+			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
@@ -33,50 +33,69 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Thêm Khách hàng</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/customer/new'/>" method="POST">
-					<div class="modal-body">
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Tên</label>
-							<div class="col-sm-10">
-							<input type="text" class="form-control" id="customerName" name="customerName" >
+					<form id="newItemForm" class="form-horizontal"
+						action="<c:url value='/admin/customer/new'/>" method="POST">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Mã</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="customerCode"
+										name="code">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Tên</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="customerName"
+										name="customerName">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Ngày
+									sinh</label>
+								<div class="col-sm-10">
+									<input type="text" class="dateInput form-control"
+										id="customerBirthDay" name="customerBirthDay"
+										data-date-format="dd/mm/yyyy">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Email</label>
+								<div class="col-sm-10">
+									<input type="email" class="form-control" id="customerEmail"
+										name="customerEmail">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Địa
+									chỉ</label>
+								<div class="col-sm-10">
+									<input type="text" class="form-control" id="customerAddress"
+										name="customerAddress">
+								</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Điện
+									thoại</label>
+								<div class="col-sm-10">
+									<input type="number" class="form-control" id="customerPhone"
+										name="customerPhone">
+								</div>
 							</div>
 						</div>
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Ngày sinh</label>
-							<div class="col-sm-10">
-							<input type="text" class="dateInput form-control" id="customerBirthDay" name="customerBirthDay" data-date-format="dd/mm/yyyy" >
-							</div>
+						<div class="modal-footer">
+							<button type="button" onclick="insertItem();"
+								class="btn btn-primary">Lưu</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Đóng</button>
 						</div>
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Email</label>
-							<div class="col-sm-10">
-							<input type="email" class="form-control" id="customerEmail" name="customerEmail" >
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Địa chỉ</label>
-							<div class="col-sm-10">
-							<input type="text" class="form-control" id="customerAddress" name="customerAddress" >
-							</div>
-						</div>
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Điện thoại</label>
-							<div class="col-sm-10">
-							<input type="number" class="form-control" id="customerPhone" name="customerPhone" >
-							</div>
-						</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" onclick="insertItem();" class="btn btn-primary">Lưu</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-					</div>
 					</form>
 				</div>
 			</div>
 		</div>
 		<div class="modal fade" id="updateItem" tabindex="-1" role="dialog"
 			aria-labelledby="myModalLabel">
-			<div class="modal-dialog" customer="document">
+			<div class="modal-dialog" role="document">
 				<div class="modal-content">
 					<div class="modal-header">
 						<button type="button" class="close" data-dismiss="modal"
@@ -85,49 +104,68 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Sửa Khách hàng</h4>
 					</div>
-					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" method="POST">
-					<div class="modal-body">
-								<input type="text" class="code form-control hide" id="code" name="code" >
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Tên</label>
-									<div class="col-sm-10">
-									<input type="text" class="customerName form-control" id="customerName" name="customerName" >
-									</div>
+					<form id="updateItemForm" class="form-horizontal" method="POST">
+						<div class="modal-body">
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Mã</label>
+								<input type="text" class="hide oldCode form-control" 
+									  name="oldCode">
+								<div class="col-sm-10">
+									<input type="text" class="code form-control" id="customerCode"
+									name="code">
 								</div>
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Ngày sinh</label>
-									<div class="col-sm-10">
-									<input type="text" class="dateInput customerBirthDay form-control" id="customerBirthDay" name="customerBirthDay" data-date-format="dd/mm/yyyy">
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Tên</label>
+								<div class="col-sm-10">
+									<input type="text" class="customerName form-control"
+										id="customerName" name="customerName">
 								</div>
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Email</label>
-									<div class="col-sm-10">
-									<input type="email" class="customerEmail form-control" id="customerEmail" name="customerEmail" >
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Ngày
+									sinh</label>
+								<div class="col-sm-10">
+									<input type="text"
+										class="dateInput customerBirthDay form-control"
+										id="customerBirthDay" name="customerBirthDay"
+										data-date-format="dd/mm/yyyy">
 								</div>
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Địa chỉ</label>
-									<div class="col-sm-10">
-									<input type="text" class="customerAddress form-control" id="customerAddress" name="customerAddress" >
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Email</label>
+								<div class="col-sm-10">
+									<input type="email" class="customerEmail form-control"
+										id="customerEmail" name="customerEmail">
 								</div>
-								<div class="form-group">
-									<label for="name" class="col-sm-2 control-label">Điện thoại</label>
-									<div class="col-sm-10">
-									<input type="number" class="customerPhone form-control" id="customerPhone" name="customerPhone" >
-									</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Địa
+									chỉ</label>
+								<div class="col-sm-10">
+									<input type="text" class="customerAddress form-control"
+										id="customerAddress" name="customerAddress">
 								</div>
-					</div>
-					<div class="modal-footer">
-						<button type="button" onclick="editedItem();" class="btn btn-primary">Chỉnh sửa</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
-					</div>
+							</div>
+							<div class="form-group">
+								<label for="name" class="col-sm-2 control-label">Điện
+									thoại</label>
+								<div class="col-sm-10">
+									<input type="number" class="customerPhone form-control"
+										id="customerPhone" name="customerPhone">
+								</div>
+							</div>
+						</div>
+						<div class="modal-footer">
+							<button type="button" onclick="editedItem();"
+								class="btn btn-primary">Chỉnh sửa</button>
+							<button type="button" class="btn btn-default"
+								data-dismiss="modal">Đóng</button>
+						</div>
 					</form>
 				</div>
 			</div>
 		</div>
-		<script
-			src="<c:url value='/resources/default/js/page/customer.js'/>"></script>
+		<script src="<c:url value='/resources/default/js/page/customer.js'/>"></script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

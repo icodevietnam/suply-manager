@@ -12,5 +12,7 @@ public interface CustomerService {
 	void delete(Customer customer);
 	
 	void update(Customer customer);
+	
+	List<Customer> searchCustomer(String code, String email, String name);
 
 }

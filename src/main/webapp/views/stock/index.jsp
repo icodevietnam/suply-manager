@@ -33,7 +33,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Thêm Kho</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/stock/new'/>" method="POST">
+					<form id="newItemForm" class="form-horizontal"  method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">Tên</label>
@@ -67,7 +67,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Sửa Kho</h4>
 					</div>
-					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" method="POST">
+					<form id="updateItemForm" class="form-horizontal" method="POST">
 					<div class="modal-body">
 								<input type="text" class="stockId form-control hide" id="stockId" name="stockId" >
 								<div class="form-group">

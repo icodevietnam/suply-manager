@@ -50,12 +50,14 @@ public class CustomerController {
 	@RequestMapping(value = "/customer/new", method = RequestMethod.POST)
 	@ResponseBody
 	public String addCustomer(
+			@RequestParam(value = "code")String code,
 			@RequestParam(value = "customerName") String customerName,
 			@RequestParam(value = "customerBirthDay") String customerBirthDay,
 			@RequestParam(value = "customerEmail") String customerEmail,
 			@RequestParam(value = "customerAddress") String customerAddress,
 			@RequestParam(value = "customerPhone") String customerPhone) {
 		Customer customer = new Customer();
+		customer.setCode(code);
 		customer.setName(customerName);
 		customer.setBirthDate(customerBirthDay);
 		customer.setEmail(customerEmail);
@@ -74,12 +76,22 @@ public class CustomerController {
 	@ResponseBody
 	public String updateCustomer(
 			@RequestParam(value = "code") String code,
+			@RequestParam(value = "oldCode") String oldCode,
 			@RequestParam(value = "customerName") String customerName,
 			@RequestParam(value = "customerBirthDay") String customerBirthDay,
 			@RequestParam(value = "customerEmail") String customerEmail,
 			@RequestParam(value = "customerAddress") String customerAddress,
 			@RequestParam(value = "customerPhone") String customerPhone) {
-		Customer customer = customerService.getCustomer(code);
+		Customer customer = null;
+		if(oldCode.equalsIgnoreCase(code)){
+			customer = customerService.getCustomer(code);
+		}else {
+			Customer oldCustomer = customerService.getCustomer(code);
+			customerService.delete(oldCustomer);
+			customer = new Customer();
+			customer.setCode(code);
+		}
+		customer = customerService.getCustomer(code);
 		customer.setName(customerName);
 		customer.setBirthDate(customerBirthDay);
 		customer.setEmail(customerEmail);

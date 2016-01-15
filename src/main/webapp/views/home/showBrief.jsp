@@ -20,9 +20,11 @@
 						<img style='width:140px;margin-left:2px;margin-bottom:5px;' src='${file.absolutelyPath}' />
 						</a>
 					</c:forEach>
+					<hr/>
 				</c:forEach>
 			</div>
 		</div>
+		<a style="color:white" class="btn btn-primary" href="<c:url value = '/home' />" >Trở về</a>
 		<script src="<c:url value='/resources/default/js/page/homeIndex.js'/>"></script>
 	</tiles:putAttribute>
 </tiles:insertDefinition>

@@ -41,4 +41,10 @@ public class CustomerServiceImpl implements CustomerService {
 		customerDao.update(customer);
 	}
 
+	@Override
+	public List<Customer> searchCustomer(String code, String email, String name) {
+		// TODO Auto-generated method stub
+		return customerDao.searchCustomer(code, email, name);
+	}
+
 }

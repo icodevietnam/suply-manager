@@ -55,7 +55,7 @@ function displayTable() {
 				i++;
 				dataDepartments.push([
 						i,value.content,value.customer.name,value.department.name,value.stock.name,value.briefType.name,
-						"<button class='btn btn-sm btn-primary' onclick='editItem("
+						"<button class='btn btn-sm btn-primary' onclick='showImage("
 						+ value.id + ")' >Xem hình ảnh</button>",
 						"<button class='btn btn-sm btn-primary' onclick='editItem("
 								+ value.id + ")' >Sửa</button>",
@@ -112,6 +112,22 @@ function editItem(id) {
 			$("#updateItemForm .customerBox").selectpicker('val',""+response.customer.code);
 			showListfile(id);
 			$("#updateItem").modal("show");
+		}
+	});
+}
+
+function showImage(id) {
+	$.ajax({
+		url : "/suply-manager/brief/get",
+		type : "GET",
+		data : {
+			itemId : id
+		},
+		dataType : "JSON",
+		success : function(response) {
+			$("#showImageForm .briefId").val(response.id);
+			showImageInForm(id);
+			$("#showImage").modal("show");
 		}
 	});
 }
@@ -196,6 +212,26 @@ function showListfile(briefId) {
 						"<a href='" + value.absolutelyPath + "' >" +
 						"<img style='width:140px;margin-left:2px;margin-bottom:5px;' src='" + value.absolutelyPath + "' /> </a>" +
 						"<button type='button' class='btn btn-danger' onclick ='deleteImage("+value.id+","+briefId+")' > Xoá </button>" +
+				"</div>");
+			});
+		},
+	});
+}
+
+function showImageInForm(briefId) {
+	$.ajax({
+		url : "/suply-manager/file/getBrief",
+		type : "POST",
+		data : {
+			briefId : briefId
+		},
+		dataType : "JSON",
+		success : function(response) {
+			$('.showFile').empty();
+			$.each(response,function(key,value){
+				$('.showFile').append("<div class='col-lg-3'>" +
+						"<a href='" + value.absolutelyPath + "' >" +
+						"<img style='width:140px;margin-left:2px;margin-bottom:5px;' src='" + value.absolutelyPath + "' /> </a>" +
 				"</div>");
 			});
 		},

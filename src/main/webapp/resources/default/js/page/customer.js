@@ -1,8 +1,20 @@
 $(function() {
 	displayTable();
 	$(".dateInput").datepicker();
+	
+	$.validator.addMethod("regex", function(value, element, regexpr) {          
+	     return regexpr.test(value);
+	   }, "Mã chưa đúng định dạng");    
+	
+	
 	$("#newItemForm").validate({
 		rules : {
+			code : {
+				required : true,
+				minlength : 14,
+				maxlength : 14,
+				regex : /^PE[0-9]{12}$/
+			},
 			customerName:{
 				required:true
 			},
@@ -10,7 +22,7 @@ $(function() {
 				required:true
 			},
 			customerEmail:{
-				required:true
+				email : true
 			},
 			customerAddress:{
 				required:true
@@ -20,6 +32,9 @@ $(function() {
 			}
 		},
 		messages : {
+			code : {
+				required : "Mã không được để trống"
+			},
 			customerName:{
 				required:"Tên không được để trống"
 			},
@@ -27,7 +42,7 @@ $(function() {
 				required:"Ngày sinh không được để trống"
 			},
 			customerEmail : {
-				required:"Thư điện tử không được để trống"
+				email:"Không đúng định dạng thư điện tử"
 			},
 			customerAddress : {
 				required:"Địa chỉ không được để trống",
@@ -43,6 +58,12 @@ $(function() {
 	
 	$("#updateItemForm").validate({
 		rules : {
+			code : {
+				required : true,
+				minlength : 14,
+				maxlength : 14,
+				regex : /^PE[0-9]{12}$/
+			},
 			customerName:{
 				required:true
 			},
@@ -50,7 +71,7 @@ $(function() {
 				required:true
 			},
 			customerEmail:{
-				required:true
+				email : true
 			},
 			customerAddress:{
 				required:true
@@ -60,6 +81,9 @@ $(function() {
 			}
 		},
 		messages : {
+			code : {
+				required : "Mã không được để trống"
+			},
 			customerName:{
 				required:"Tên không được để trống"
 			},
@@ -67,7 +91,7 @@ $(function() {
 				required:"Ngày sinh không được để trống"
 			},
 			customerEmail : {
-				required:"Thư điện tử không được để trống"
+				email:"Không đúng định dạng thư điện tử"
 			},
 			customerAddress : {
 				required:"Địa chỉ không được để trống",
@@ -142,6 +166,7 @@ function editItem(code) {
 		},
 		dataType : "JSON",
 		success : function(response) {
+			$("#updateItemForm .oldCode").val(response.code);
 			$("#updateItemForm .code").val(response.code);
 			$("#updateItemForm .customerName").val(response.name);
 			$("#updateItemForm .customerBirthDay").val(response.birthDate);
@@ -171,6 +196,7 @@ function deleteItem(code) {
 
 function editedItem() {
 	if($("#updateItemForm").valid()){
+		var oldCode = $("#updateItemForm .oldCode").val();
 		var code = $("#updateItemForm .code").val();
 		var customerName = $("#updateItemForm .customerName").val();
 		var customerBirthDay = $("#updateItemForm .customerBirthDay").val();
@@ -182,6 +208,7 @@ function editedItem() {
 			type : "POST",
 			data : {
 				code : code,
+				oldCode : oldCode,
 				customerName : customerName,
 				customerBirthDay : customerBirthDay,
 				customerEmail : customerEmail,
@@ -206,6 +233,7 @@ function editedItem() {
 function insertItem() {
 	
 	if($("#newItemForm").valid()){
+		var customerCode = $("#customerCode").val();
 		var customerName = $("#customerName").val();
 		var customerBirthDay = $("#customerBirthDay").val();
 		var customerEmail = $("#customerEmail").val();
@@ -215,6 +243,7 @@ function insertItem() {
 			url : "/suply-manager/customer/new",
 			type : "POST",
 			data : {
+				code : customerCode,
 				customerName : customerName,
 				customerBirthDay : customerBirthDay,
 				customerEmail : customerEmail,

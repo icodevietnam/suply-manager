@@ -33,7 +33,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Thêm Loại Hồ Sơ</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/briefType/new'/>" method="POST">
+					<form id="newItemForm" class="form-horizontal"  method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">Tên</label>
@@ -61,7 +61,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Sửa Loại Hồ Sơ</h4>
 					</div>
-					<form id="updateItemForm" class="form-horizontal" action="<c:url value='/admin/profile/updateProfile'/>" method="POST">
+					<form id="updateItemForm" class="form-horizontal" method="POST">
 					<div class="modal-body">
 								<input type="text" class="briefTypeId form-control hide" id="briefTypeId" name="briefTypeId" >
 								<div class="form-group">

@@ -1,4 +1,4 @@
-package com.icoding.dao;
+package com.icoding.dao.impl;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -9,6 +9,7 @@ import org.hibernate.SessionFactory;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import com.icoding.dao.CustomerDao;
 import com.icoding.domain.Customer;
 
 @Repository
@@ -54,6 +55,18 @@ public class CustomerDaoImpl implements CustomerDao {
 	@Override
 	public void update(Customer customer) {
 		getCurrentSession().update(customer);
+	}
+
+	@Override
+	public List<Customer> searchCustomer(String code, String email, String name) {
+		List<Customer> customerLists = new ArrayList<Customer>();
+		Query query = getCurrentSession()
+				.createQuery("from Customer c where c.code LIKE :code AND c.name LIKE :name AND c.email LIKE :email ");
+		query.setParameter("code", "%" + code + "%");
+		query.setParameter("name", "%" + name + "%");
+		query.setParameter("email", "%" + email + "%");
+		customerLists = query.list();
+		return customerLists;
 	}
 
 }

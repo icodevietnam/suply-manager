@@ -190,16 +190,8 @@ public class BriefController {
 		 * List<Customer> listCustomers = new ArrayList<Customer>();
 		 * listCustomers = briefService.searchCustomer(code);
 		 */
-		List<Customer> listCustomers = customerService.getAll();
-		List<Customer> filterCustomer = new ArrayList<Customer>();
-		for (Customer customer : listCustomers) {
-			if (customer.getCode().toLowerCase().contains(code.toLowerCase())
-					|| customer.getName().toLowerCase().contains(name.toLowerCase())
-					|| customer.getEmail().toLowerCase().contains(email.toLowerCase())) {
-				filterCustomer.add(customer);
-			}
-		}
-		return filterCustomer;
+		List<Customer> listCustomers = customerService.searchCustomer(code, email, name);
+		return listCustomers;
 	}
 
 	@RequestMapping(value = "/brief/searchBrief", method = RequestMethod.GET)
