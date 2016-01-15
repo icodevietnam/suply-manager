@@ -35,8 +35,7 @@
 
 			<div class="panel panel-primary">
 				<div class="panel-heading">
-					<div class="panel-title text-center">QUẢN LÝ HỒ SƠ ĐIỆN
-						LỰC</div>
+					<div class="panel-title text-center">QUẢN LÝ HỒ SƠ LƯU TRỮ KHÁCH HÀNG</div>
 				</div>
 
 				<div class="panel-body">
@@ -66,6 +65,7 @@
 								<button type="submit" class="btn btn-primary pull-right">
 									<i class="glyphicon glyphicon-log-in"></i> Đăng nhập
 								</button>
+								<button type="button" class="btn btn-danger">Quên mật khẩu</button>
 								<span class="error">${error1}</span>
 							</div>
 						</div>

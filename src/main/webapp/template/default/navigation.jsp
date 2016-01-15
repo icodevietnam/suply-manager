@@ -20,7 +20,8 @@
 					<a data-toggle="dropdown" class="dropdown-toggle" href="#"> 
 					<span class="clear">
 						<span class="block m-t-xs"> <strong
-								class="font-bold"><%=request.getUserPrincipal().getName()%></strong>
+								class="font-bold"><%=request.getUserPrincipal().getName()%> </strong> - 
+								<strong id="roleName"></strong>
 						</span>
 						<span class="departmentCur text-muted text-xs block">Phòng: Art Director</span>
 					</span>
@@ -56,9 +57,9 @@
 			<li class="suply"><a href="index.html"><i class="fa fa-th-large"></i> <span
 				class="nav-label">Quản lý Hồ Sơ</span> <span class="fa arrow"></span></a>
 				<ul class="nav nav-second-level collapse">
-					<li><a href="<c:url value='/admin/brief/list'/>">Quản lý Hồ Sơ</a></li>
-					<li><a href="<c:url value='/admin/briefType/list'/>">Quản lý Loại Hồ Sơ</a></li>
 					<li><a href="<c:url value='/admin/stock/list'/>">Quản lý Kho</a></li>
+					<li><a href="<c:url value='/admin/briefType/list'/>">Quản lý Loại Hồ Sơ</a></li>
+					<li><a href="<c:url value='/admin/brief/list'/>">Quản lý Hồ Sơ</a></li>
 				</ul>
 			</li>
 		</ul>

@@ -11,13 +11,13 @@
 						<a href="#" class="btn-link">
 							<h2>Tình hình hồ sơ</h2>
 						</a>
-						<div class="row">
-							<input type="text" id="searchName" name="searchName"
-								placeholder="Name or Code">
+						<div class="form-group">
+							<input type="text" id="searchName" name="searchName" class="form-control"
+								placeholder="Tên / mã">
 						</div>
 						<button class='btn btn-primary' type="button"
-							onclick='searchData();'>Search</button>
-						<a href="<c:url />">Export Data</a>
+							onclick='searchData();'>Tìm kiếm</button>
+						<%-- <a href="<c:url />">Export Data</a> --%>
 						<div class="table-responsive">
 							<table id="tblBrief"
 								class="table table-bordered table-hover table-striped">

@@ -188,7 +188,7 @@ function displayTable() {
 				}
 				dataUsers.push([
 						i,
-						value.username,value.fullName,value.birthDate,value.address,state,value.role.name,value.department.name,
+						value.username,value.fullName,value.birthDate,value.address,state,value.role.description,value.department.name,
 						"<button class='btn btn-sm btn-primary' onclick='changePass("
 						+ value.id + ")' >Đổi Mật Khẩu</button>",
 						"<button class='btn btn-sm btn-primary' onclick='editItem("

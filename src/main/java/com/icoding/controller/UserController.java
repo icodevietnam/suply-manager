@@ -114,7 +114,11 @@ public class UserController {
 		User user = userService.getUser(id);
 		if (!itemId.equalsIgnoreCase("1")) {
 			user.setRole(null);
-			userService.delete(user);
+			try {
+				userService.delete(user);
+			} catch (Exception e) {
+				e.printStackTrace();
+			}
 			return "true";
 		}
 		return "false";

@@ -29,14 +29,14 @@ public class DepartmentController {
 	@Autowired
 	private DepartmentService departmentService;
 
-	@RequestMapping(value = "/deparment/getCurrentUserDepartment", method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
+	@RequestMapping(value = "/deparment/getCurrentUserDepartment", method = RequestMethod.GET, produces = "application/json")
 	@ResponseBody
-	public String getCurrentUserDepartment() {
+	public User getCurrentUserDepartment() {
 		Authentication auth = SecurityContextHolder.getContext()
 				.getAuthentication();
 		UserDetails userDetails = (UserDetails) auth.getPrincipal();
 		User currentUser = userService.getUser(userDetails.getUsername());
-		return currentUser.getDepartment().getName();
+		return currentUser;
 	}
 
 	@RequestMapping(value = { "/admin/department", "/admin/department/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
@@ -61,7 +61,12 @@ public class DepartmentController {
 	public String deleteDepartment(@RequestParam(value = "itemId") String itemId) {
 		Integer id = Integer.parseInt(itemId);
 		Department department = departmentService.getDepartment(id);
-		return "false";
+		try {
+			departmentService.delete(department);
+			return "true";
+		} catch (Exception e) {
+			return "false";
+		}
 	}
 
 	@RequestMapping(value = "/department/new", method = RequestMethod.POST)

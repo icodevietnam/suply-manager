@@ -111,7 +111,7 @@
 							<div class="col-sm-10">
 								<select id="roleBox" name="roleBox" class="form-control combobox" data-style="btn-white">
 									<c:forEach var="role" items="${listRoles}">
-										<option value="${role.id}">${role.name}</option>
+										<option value="${role.id}">${role.description}</option>
 									</c:forEach>
 								</select>
 							</div>
@@ -203,7 +203,7 @@
 							<div class="col-sm-10">
 								<select id="roleBox" name="roleBox" class="roleBox form-control combobox" data-style="btn-white">
 									<c:forEach var="role" items="${listRoles}">
-										<option value="${role.id}">${role.name}</option>
+										<option value="${role.id}">${role.description}</option>
 									</c:forEach>
 								</select>
 							</div>

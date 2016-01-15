@@ -2,8 +2,17 @@
 $.extend(true, $.fn.dataTable.defaults, {
     "sDom": "<'row'<'col-sm-6'l><'col-sm-6'f>r>" + "t" + "<'row'<'col-sm-6'i><'col-sm-6'p>>",
     "oLanguage": {
-        "sLengthMenu": "_MENU_ records per page"
-    }
+		"sLengthMenu": "_MENU_ dòng mỗi trang",
+		"sZeroRecords": "Bạn không có dữ liệu",
+		"sInfo": "Showing _START_ to _END_ of _TOTAL_ records",
+		"sInfoEmpty": "Hiện 0 tới 0 của 0 dòng",
+		"sSearch" : "Tìm",
+		"oPaginate": {
+	        "sNext": "Tới",
+	        "sPrevious" : "Lui"
+	     },
+		"sInfoFiltered": "(filtered from _MAX_ total records)"
+	}
 });
 
 
