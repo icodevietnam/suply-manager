@@ -115,6 +115,11 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể xóa quyền');
+				}else{
+					alertify.success('Đã xóa quyền');
+				}
 				displayTable();
 			}
 		});
@@ -136,6 +141,11 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể sửa quyền');
+				}else{
+					alertify.success('Đã sửa quyền');
+				}
 				displayTable();
 				$("#updateItemForm .roleId").val(" ");
 				$("#updateItemForm .roleName").val(" ");
@@ -147,9 +157,8 @@ function editedItem() {
 }
 
 function insertItem() {
-	
 	if($("#newItemForm").valid()){
-		var roleName = $("#roleName").val();
+		var roleName = $("#newItemForm input[name='roleName']").val();
 		var roleDescription = $("#roleDescription").val();
 		$.ajax({
 			url : "/suply-manager/role/new",
@@ -160,6 +169,11 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể thêm quyền');
+				}else{
+					alertify.success('Đã thêm quyền');
+				}
 				displayTable();
 				$("#newItem").modal("hide");
 				$("#roleName").val(" ");

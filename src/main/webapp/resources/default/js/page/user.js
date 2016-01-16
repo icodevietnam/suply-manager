@@ -6,7 +6,16 @@ $(function() {
 	$("#newItemForm").validate({
 		rules : {
 			userName:{
-				required:true
+				required:true,
+				remote : {
+					url : "/suply-manager/user/check",
+					type : "GET",
+					data: {
+				          check: function() {
+				            return $( "#newItemForm input[name='userName']" ).val();
+				          }
+				    }
+				}
 			},
 			password:{
 				required:true,
@@ -31,7 +40,8 @@ $(function() {
 		},
 		messages : {
 			userName:{
-				required:"Tên đăng nhập không được để trống"
+				required:"Tên đăng nhập không được để trống",
+				remote : "Tên đăng nhập đã tồn tại"
 			},
 			password:{
 				required:"Mật khẩu không được để trống",
@@ -88,7 +98,16 @@ $(function() {
 	$("#updateItemForm").validate({
 		rules : {
 			userName:{
-				required:true
+				required:true,
+				remote : {
+					url : "/suply-manager/user/check",
+					type : "GET",
+					data: {
+				          check: function() {
+				            return $( "#updateItemForm input[name='userName']" ).val();
+				          }
+				    }
+				}
 			},fullname:{
 				required:true
 			},birthDate:{
@@ -103,7 +122,8 @@ $(function() {
 		},
 		messages : {
 			userName:{
-				required:"Tên đăng nhập không được để trống"
+				required:"Tên đăng nhập không được để trống",
+				remote : "Tên đăng nhập đã tồn tại"
 			},fullname:{
 				required:"Họ và tên không được để trống"
 			},birthDate:{
@@ -154,8 +174,10 @@ function insertItem() {
 			dataType : "JSON",
 			success : function(response) {
 				if(response ==="false"){
-					alert("Không thể delete được vì đây là admin root");
-				} 
+					alertify.error('Không thể thêm người dùng');
+				}else{
+					alertify.success('Đã thêm người dùng');
+				}
 				$("#newItem").modal("hide");
 				$("#userName").val("");
 				$("#fullname").val("");
@@ -271,6 +293,11 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể xóa người dùng');
+				}else{
+					alertify.success('Đã xóa người dùng');
+				}
 				displayTable();
 			}
 		});
@@ -306,6 +333,11 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể sửa thông tin người dùng');
+				}else{
+					alertify.success('Đã sửa thông tin người dùng');
+				}
 				$("#userName").val("");
 				$("#fullname").val("");
 				$("#birthDate").val("");
@@ -326,7 +358,6 @@ function changePass(id){
 function changePassProcess(){
 	var userId = $("#changeModalForm .userId").val();
 	var password = $("#changeModalForm .password").val();
-	alert("Dep Trai");
 	$.ajax({
 		url : "/suply-manager/user/changePassword",
 		type : "POST",
@@ -336,11 +367,10 @@ function changePassProcess(){
 		},
 		dataType : "JSON",
 		success : function(response) {
-			if (response == true) {
-				alert("Thay đổi mật khẩu thành công");
-			}
-			else{
-				alert("Thay đổi mật khẩu thất bại");
+			if(response ==="false"){
+				alertify.error('Không thể thay đổi mật khẩu người dùng');
+			}else{
+				alertify.success('Đã thay đổi mật khẩu người dùng');
 			}
 		}
 	});

@@ -14,5 +14,7 @@ public interface CustomerService {
 	void update(Customer customer);
 	
 	List<Customer> searchCustomer(String code, String email, String name);
+	
+	Customer searchName(String search);
 
 }

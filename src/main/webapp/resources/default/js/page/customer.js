@@ -13,6 +13,15 @@ $(function() {
 				required : true,
 				minlength : 14,
 				maxlength : 14,
+				remote : {
+					url : "/suply-manager/customer/checkCode",
+					type : "GET",
+					data: {
+				          code: function() {
+				            return $( "#newItemForm input[name='code']" ).val();
+				          }
+				    }
+				},
 				regex : /^PE[0-9]{12}$/
 			},
 			customerName:{
@@ -33,7 +42,10 @@ $(function() {
 		},
 		messages : {
 			code : {
-				required : "Mã không được để trống"
+				required : "Mã không được để trống",
+				minlength : "Mã không được bé hơn 14 ký tự",
+				maxlength : "Mã phải lớn hơn 14 ký tự",
+				remote : "Mã đã trùng"
 			},
 			customerName:{
 				required:"Tên không được để trống"
@@ -62,6 +74,15 @@ $(function() {
 				required : true,
 				minlength : 14,
 				maxlength : 14,
+				remote : {
+					url : "/suply-manager/customer/checkCode",
+					type : "GET",
+					data: {
+				          code: function() {
+				            return $( "#updateItemForm input[name='code']" ).val();
+				          }
+				    }
+				},
 				regex : /^PE[0-9]{12}$/
 			},
 			customerName:{
@@ -82,7 +103,10 @@ $(function() {
 		},
 		messages : {
 			code : {
-				required : "Mã không được để trống"
+				required : "Mã không được để trống",
+				minlength : "Mã không được bé hơn 14 ký tự",
+				maxlength : "Mã phải lớn hơn 14 ký tự",
+				remote : "Mã đã trùng"
 			},
 			customerName:{
 				required:"Tên không được để trống"
@@ -188,6 +212,11 @@ function deleteItem(code) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể xóa khách hàng');
+				}else{
+					alertify.success('Đã xóa khách hàng');
+				}
 				displayTable();
 			}
 		});
@@ -217,6 +246,11 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể sửa khách hàng');
+				}else{
+					alertify.success('Đã sửa khách hàng');
+				}
 				displayTable();
 				$("#updateItemForm .code").val(" ");
 				$("#updateItemForm .customerName").val(" ");
@@ -252,6 +286,11 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể thêm khách hàng');
+				}else{
+					alertify.success('Đã thêm khách hàng');
+				}
 				displayTable();
 				$("#newItem").modal("hide");
 				$("#customerName").val("");

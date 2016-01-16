@@ -142,8 +142,10 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
-				if(response == false){
-					alert("Không thể xóa vì trong hồ sơ có hình ảnh");
+				if(response ==="false"){
+					alertify.error('Không thể xóa hồ sơ');
+				}else{
+					alertify.success('Đã xóa hồ sơ');
 				}
 			},
 			complete:function(){
@@ -164,6 +166,11 @@ function editedItem() {
 			processData:false,
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể sửa hồ sơ');
+				}else{
+					alertify.success('Đã sửa hồ sơ');
+				}
 			},
 			complete:function(){
 				displayTable();
@@ -187,6 +194,11 @@ function insertItem() {
 			contentType:false,
 			processData:false,
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể thêm hồ sơ');
+				}else{
+					alertify.success('Đã thêm hồ sơ');
+				}
 			},
 			complete:function(){
 				displayTable();

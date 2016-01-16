@@ -182,4 +182,15 @@ public class UserController {
 			return "false";
 		}
 	}
+	
+	@RequestMapping(value = "/user/check", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean checkUser(@RequestParam(value = "check") String check) {
+		User user = userService.checkUser(check);
+		if(null != user){
+			return false;
+		}else{
+			return true;
+		}
+	}
 }

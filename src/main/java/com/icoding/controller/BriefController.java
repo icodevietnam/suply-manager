@@ -20,6 +20,7 @@ import com.icoding.domain.Brief;
 import com.icoding.domain.BriefType;
 import com.icoding.domain.Customer;
 import com.icoding.domain.Department;
+import com.icoding.domain.File;
 import com.icoding.domain.Stock;
 import com.icoding.process.ImageProcess;
 import com.icoding.service.BriefService;
@@ -86,10 +87,16 @@ public class BriefController {
 		brief.setDepartment(null);
 		brief.setStock(null);
 		brief.setCustomer(null);
-		if (brief.getListImage().size() == 0) {
+		List<File> listFiles =brief.getListImage();
+		for(File file : listFiles){
+			file.setBrief(null);
+			fileService.delete(file);
+		}
+		try {
 			briefService.delete(brief);
 			return "true";
-		} else {
+		} catch (Exception e) {
+			e.printStackTrace();
 			return "false";
 		}
 	}
@@ -171,15 +178,9 @@ public class BriefController {
 	@RequestMapping(value = "/brief/searchName", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Brief> searchBriefByName(@RequestParam(value = "searchName") String searchName) {
-		List<Brief> listBrief = briefService.getAll();
-		List<Brief> filterBrief = new ArrayList<Brief>();
-		for (Brief brief : listBrief) {
-			if (brief.getCustomer().getName().toLowerCase().contains(searchName.toLowerCase())
-					|| brief.getCustomer().getCode().toLowerCase().contains(searchName.toLowerCase())) {
-				filterBrief.add(brief);
-			}
-		}
-		return filterBrief;
+		Customer customer = customerService.searchName(searchName);
+		List<Brief> listBriefs = customer.getListBriefs();
+		return listBriefs;
 	}
 
 	@RequestMapping(value = "/brief/searchCustomer", method = RequestMethod.GET)

@@ -47,4 +47,9 @@ public class CustomerServiceImpl implements CustomerService {
 		return customerDao.searchCustomer(code, email, name);
 	}
 
+	@Override
+	public Customer searchName(String search) {
+		return customerDao.searchName(search);
+	}
+
 }

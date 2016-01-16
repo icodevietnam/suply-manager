@@ -100,6 +100,11 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể xóa phòng ban');
+				}else{
+					alertify.success('Đã xóa phòng ban');
+				}
 				displayTable();
 			}
 		});
@@ -111,7 +116,6 @@ function editedItem() {
 	if($("#updateItemForm").valid()){
 		var departmentId = $("#updateItemForm .departmentId").val();
 		var departmentName = $("#updateItemForm .departmentName").val();
-		console.log(departmentId +"-" + departmentName);
 		$.ajax({
 			url : "/suply-manager/department/update",
 			type : "POST",
@@ -121,6 +125,11 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể sửa phòng ban');
+				}else{
+					alertify.success('Đã sửa phòng ban');
+				}
 				displayTable();
 				$("#updateItem").modal("hide");
 				$("#updateItemForm .departmentId").val(" ");
@@ -142,6 +151,11 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể thêm phòng ban');
+				}else{
+					alertify.success('Đã thêm phòng ban');
+				}
 				displayTable();
 				$("#newItem").modal("hide");
 				$("#departmentName").val(" ");

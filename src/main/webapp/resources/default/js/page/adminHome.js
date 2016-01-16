@@ -18,6 +18,7 @@ function searchData() {
 				i++;
 				dataDepartments.push([
 						i,
+						value.customer.code,
 						value.content,
 						value.customer.name,
 						value.department.name,
@@ -38,6 +39,8 @@ function searchData() {
 				"aaSorting" : [],
 				"aoColumns" : [ {
 					"sTitle" : "STT"
+				},{
+					"sTitle" : "Mã khách hàng"
 				}, {
 					"sTitle" : "Nội dung"
 				}, {
@@ -70,6 +73,7 @@ function displayTable() {
 				i++;
 				dataDepartments.push([
 						i,
+						value.customer.code,
 						value.content,
 						value.customer.name,
 						value.department.name,
@@ -90,6 +94,8 @@ function displayTable() {
 				"aaSorting" : [],
 				"aoColumns" : [ {
 					"sTitle" : "STT"
+				},{
+					"sTitle" : "Mã khách hàng"
 				}, {
 					"sTitle" : "Nội dung"
 				}, {

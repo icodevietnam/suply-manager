@@ -73,13 +73,13 @@
 								<div class="form-group">
 									<label for="name" class="col-sm-2 control-label">Tên</label>
 									<div class="col-sm-10">
-										<input type="text" class="roleName form-control" id="roleName" name="roleName" >
+										<input type="text" class="roleName form-control" name="roleName" >
 									</div>
 								</div>
 								<div class="form-group">
 									<label for="name" class="col-sm-2 control-label">Quyền</label>
 									<div class="col-sm-10">
-										<input type="text" class="roleDescription form-control" id="roleDescription" name="roleDescription" >
+										<input type="text" class="roleDescription form-control" name="roleDescription" >
 									</div>
 								</div>
 					</div>

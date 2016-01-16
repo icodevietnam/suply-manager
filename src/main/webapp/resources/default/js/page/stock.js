@@ -115,6 +115,11 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể xóa kho');
+				}else{
+					alertify.success('Đã xóa kho');
+				}
 				displayTable();
 			}
 		});
@@ -136,6 +141,11 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể sửa kho');
+				}else{
+					alertify.success('Đã sửa kho');
+				}
 				displayTable();
 				$("#updateItemForm .stockId").val(" ");
 				$("#updateItemForm .stockName").val(" ");
@@ -159,6 +169,11 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể thêm kho');
+				}else{
+					alertify.success('Đã thêm kho');
+				}
 			},
 			complete : function(){
 				displayTable();

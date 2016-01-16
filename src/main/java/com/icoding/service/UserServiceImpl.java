@@ -51,4 +51,9 @@ public class UserServiceImpl implements UserService {
 		return userDao.getAll();
 	}
 
+	@Override
+	public User checkUser(String search) {
+		return userDao.checkUser(search);
+	}
+
 }

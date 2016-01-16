@@ -11,7 +11,9 @@ import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
 
+import com.icoding.domain.Brief;
 import com.icoding.domain.Customer;
+import com.icoding.service.BriefService;
 import com.icoding.service.CustomerService;
 
 @Controller
@@ -19,6 +21,9 @@ public class CustomerController {
 
 	@Autowired
 	private CustomerService customerService;
+	
+	@Autowired
+	private BriefService briefService;
 
 	@RequestMapping(value = { "/admin/customer", "/admin/customer/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
@@ -83,22 +88,34 @@ public class CustomerController {
 			@RequestParam(value = "customerAddress") String customerAddress,
 			@RequestParam(value = "customerPhone") String customerPhone) {
 		Customer customer = null;
+		List<Brief> listNewBriefs = new ArrayList<Brief>();
 		if(oldCode.equalsIgnoreCase(code)){
 			customer = customerService.getCustomer(code);
 		}else {
-			Customer oldCustomer = customerService.getCustomer(code);
+			Customer oldCustomer = customerService.getCustomer(oldCode);
+			List<Brief> listBrief = oldCustomer.getListBriefs();
+			for(Brief brief : listBrief){
+				brief.setCustomer(null);
+				listNewBriefs.add(brief);
+				briefService.saveOrUpdate(brief);
+			}
 			customerService.delete(oldCustomer);
 			customer = new Customer();
 			customer.setCode(code);
 		}
-		customer = customerService.getCustomer(code);
 		customer.setName(customerName);
 		customer.setBirthDate(customerBirthDay);
 		customer.setEmail(customerEmail);
 		customer.setAddress(customerAddress);
 		customer.setPhone(customerPhone);
+		
+		//Add List Brief
 		try {
-			customerService.update(customer);
+			customerService.saveOrUpdate(customer);
+			for(Brief brief : listNewBriefs){
+				brief.setCustomer(customer);
+				briefService.saveOrUpdate(brief);
+			}
 			return "true";
 		} catch (Exception e) {
 			return "false";
@@ -110,5 +127,15 @@ public class CustomerController {
 	public Customer getCustomer(@RequestParam(value = "code") String code) {
 		Customer customer = customerService.getCustomer(code);
 		return customer;
+	}
+	
+	@RequestMapping(value = "/customer/checkCode", method = RequestMethod.GET)
+	@ResponseBody
+	public boolean checkCode(@RequestParam(value = "code") String code) {
+		Customer customer = customerService.getCustomer(code);
+		if(null != customer){
+			return false;
+		}
+		return true;
 	}
 }

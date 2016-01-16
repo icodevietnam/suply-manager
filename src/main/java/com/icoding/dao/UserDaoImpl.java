@@ -91,4 +91,18 @@ public class UserDaoImpl implements UserDao {
 		return userList;
 	}
 
+	@Override
+	public User checkUser(String search) {
+		List<User> userList = new ArrayList<User>();
+		Query query = getCurrentSession()
+				.createQuery(
+						"from User u where u.username = :search OR u.email = :search");
+		query.setParameter("search", search);
+		userList = query.list();
+		if (userList.size() > 0)
+			return userList.get(0);
+		else
+			return null;
+	}
+
 }

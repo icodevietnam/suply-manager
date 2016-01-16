@@ -33,7 +33,7 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Thêm Người dùng</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" action="<c:url value='/admin/user/new'/>" method="POST">
+					<form id="newItemForm" class="form-horizontal" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
 							<label for="name" class="col-sm-2 control-label">Tên đăng nhập</label>

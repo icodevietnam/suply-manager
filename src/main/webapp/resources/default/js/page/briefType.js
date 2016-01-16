@@ -100,6 +100,11 @@ function deleteItem(id) {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể xóa loại hồ sơ');
+				}else{
+					alertify.success('Đã xóa loại hồ sơ');
+				}
 				displayTable();
 			}
 		});
@@ -119,6 +124,11 @@ function editedItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể sửa loại hồ sơ');
+				}else{
+					alertify.success('Đã sửa loại hồ sơ');
+				}
 				$("#updateItemForm .briefTypeId").val(" ");
 				$("#updateItemForm .briefTypeName").val(" ");
 				$("#updateItem").modal("hide");
@@ -140,6 +150,11 @@ function insertItem() {
 			},
 			dataType : "JSON",
 			success : function(response) {
+				if(response ==="false"){
+					alertify.error('Không thể thêm loại hồ sơ');
+				}else{
+					alertify.success('Đã thêm loại hồ sơ');
+				}
 				$("#newItem").modal("hide");
 				$("#briefTypeName").val(" ");
 				displayTable();

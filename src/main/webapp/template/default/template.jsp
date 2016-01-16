@@ -18,9 +18,12 @@
     <link href="<c:url value='/resources/default/css/dataTables.bootstrap.css'/>" rel="stylesheet">
     <link href="<c:url value='/resources/default/css/bootstrap-select.css'/>" rel="stylesheet">
     <link href="<c:url value='/resources/default/css/datepicker.css'/>" rel="stylesheet">
+    <link href="<c:url value='/resources/default/css/alertify.min.css'/>" rel="stylesheet">
+    <link href="<c:url value='/resources/default/css/themes/bootstrap.min.css'/>" rel="stylesheet">
     <link href="<c:url value='/resources/default/css/style.css'/>" rel="stylesheet">
     <script src="<c:url value='/resources/default/js/jquery-2.1.1.js'/>"></script>
     <script src="<c:url value='/resources/default/js/moment.js'/>"></script>
+    <script src="<c:url value='/resources/default/js/alertify.min.js'/>"></script>
     <script src="<c:url value='/resources/default/js/bootstrap-select.js'/>"></script>
     <script src="<c:url value='/resources/default/js/bootstrap-datepicker.js'/>"></script>
     <script src="<c:url value='/resources/default/js/jquery.dataTables.js'/>"></script>

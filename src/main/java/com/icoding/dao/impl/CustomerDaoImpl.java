@@ -69,4 +69,14 @@ public class CustomerDaoImpl implements CustomerDao {
 		return customerLists;
 	}
 
+	@Override
+	public Customer searchName(String search) {
+		Customer customer = null;
+		Query query = getCurrentSession()
+				.createQuery("from Customer c where c.code LIKE :search OR c.name LIKE :search ");
+		query.setParameter("search", "%" + search + "%");
+		customer = (Customer) query.list().get(0);
+		return customer;
+	}
+
 }
