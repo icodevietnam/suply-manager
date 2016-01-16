@@ -87,4 +87,13 @@ public class BriefDaoImpl implements BriefDao {
 		return listBriefs;
 	}
 
+	@Override
+	public List<Brief> showNoneBorrow() {
+		List<Brief> listBriefs = new ArrayList<Brief>();
+		Query query = getCurrentSession().createSQLQuery(
+				" Select * from Brief b where b.department is null ");
+		listBriefs = query.list();
+		return listBriefs;
+	}
+
 }

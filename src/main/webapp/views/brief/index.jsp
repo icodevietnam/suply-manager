@@ -146,7 +146,7 @@
 							<div class="col-sm-10">
 								<select id="customerBox" name="customerBox" class="customerBox form-control combobox" data-style="btn-white">
 									<c:forEach var="customer" items="${listCustomers}">
-										<option value="${customer.code}">${customer.name} - Đ/c: ${customer.address}</option>
+										<option value="${customer.code}">${customer.code} - ${customer.name} - Đ/c: ${customer.address}</option>
 									</c:forEach>
 								</select>
 							</div>

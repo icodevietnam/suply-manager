@@ -52,4 +52,9 @@ public class BriefServiceImpl implements BriefService {
 		return briefDao.searchBrief(cusId);
 	}
 
+	@Override
+	public List<Brief> showNoneBorrow() {
+		return briefDao.showNoneBorrow();
+	}
+
 }

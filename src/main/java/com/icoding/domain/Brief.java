@@ -58,6 +58,10 @@ public class Brief {
 	@Fetch(FetchMode.SELECT)
 	private List<File> listImage;
 	
+	@ManyToOne
+	@JoinColumn(name = "note")
+	private Note note;
+	
 	public List<File> getListImage() {
 		return listImage;
 	}
@@ -128,6 +132,14 @@ public class Brief {
 
 	public void setIsShowed(Boolean isShowed) {
 		this.isShowed = isShowed;
+	}
+
+	public Note getNote() {
+		return note;
+	}
+
+	public void setNote(Note note) {
+		this.note = note;
 	}
 
 }

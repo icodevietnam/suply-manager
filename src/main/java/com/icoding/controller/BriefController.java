@@ -109,7 +109,7 @@ public class BriefController {
 			@RequestParam(value = "customerBox") String customerBox,
 			@RequestParam(value = "departmentBox") String departmentBox,
 			@RequestParam(value = "file1") MultipartFile file1, @RequestParam(value = "file2") MultipartFile file2,
-			@RequestParam(value = "file2") MultipartFile file3) {
+			@RequestParam(value = "file3") MultipartFile file3) {
 		Brief brief = new Brief();
 		brief.setContent(content);
 		brief.setCreateDate(new Date());
@@ -143,7 +143,7 @@ public class BriefController {
 			@RequestParam(value = "customerBox") String customerBox,
 			@RequestParam(value = "departmentBox") String departmentBox,
 			@RequestParam(value = "file1") MultipartFile file1, @RequestParam(value = "file2") MultipartFile file2,
-			@RequestParam(value = "file2") MultipartFile file3) {
+			@RequestParam(value = "file3") MultipartFile file3) {
 		Brief brief = briefService.getBrief(Integer.parseInt(briefId));
 		brief.setContent(content);
 		brief.setBriefType(briefTypeService.getBriefType(Integer.parseInt(briefTypeBox)));
@@ -217,6 +217,13 @@ public class BriefController {
 		model.addAttribute("listBrief",filterBrief);
 		model.addAttribute("title", "Hồ Sơ của : " + customer.getName());
 		return "home/showBrief";
+	}
+	
+	@RequestMapping(value = "/brief/searchNotBorrow", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Brief> getBriefNotBorrow() {
+		List<Brief> listBriefs = briefService.showNoneBorrow();
+		return listBriefs;
 	}
 
 }

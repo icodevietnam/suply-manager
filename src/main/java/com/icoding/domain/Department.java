@@ -37,6 +37,11 @@ public class Department {
 	@Fetch(FetchMode.SELECT)
 	@JsonIgnore
 	private List<Brief> listBrief;
+	
+	@OneToMany(fetch = FetchType.EAGER, mappedBy = "department", cascade = CascadeType.ALL)
+	@Fetch(FetchMode.SELECT)
+	@JsonIgnore
+	private List<Note> listNotes;
 
 	public Integer getId() {
 		return id;
@@ -69,7 +74,13 @@ public class Department {
 	public void setListBrief(List<Brief> listBrief) {
 		this.listBrief = listBrief;
 	}
-	
-	
+
+	public List<Note> getListNotes() {
+		return listNotes;
+	}
+
+	public void setListNotes(List<Note> listNotes) {
+		this.listNotes = listNotes;
+	}
 
 }

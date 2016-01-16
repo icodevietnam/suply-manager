@@ -2,7 +2,7 @@ $(function() {
 });
 
 function displayTable() {
-	var code = $("#customerCode").val() ;
+	var code = "PE" + $("#customerCode").val() ;
 	var name = $("#customerName").val() ;
 	var email = $("#customerEmail").val() ;
 	var dataDepartments = [];

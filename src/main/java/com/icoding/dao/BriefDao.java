@@ -18,4 +18,6 @@ public interface BriefDao {
 	void update(Brief brief);
 	List<Customer> searchCustomer(String code);
 	List<Brief> searchBrief(int cusId);
+	
+	List<Brief> showNoneBorrow();
 }

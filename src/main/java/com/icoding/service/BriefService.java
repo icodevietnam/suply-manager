@@ -20,5 +20,6 @@ public interface BriefService {
 	List<Customer> searchCustomer(String code);
 	
 	List<Brief> searchBrief(int cusId);
-
+	
+	List<Brief> showNoneBorrow();
 }
