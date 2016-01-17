@@ -105,7 +105,6 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" onclick="insertItem();" class="btn btn-primary">Lưu</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 					</div>
 					</form>
 				</div>
@@ -201,7 +200,6 @@
 					</div>
 					<div class="modal-footer">
 						<button type="button" onclick="editedItem();" class="btn btn-primary">Chỉnh sửa</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
 					</div>
 					</form>
 				</div>
@@ -216,7 +214,7 @@
 							aria-label="Close">
 							<span aria-hidden="true">&times;</span>
 						</button>
-						<h4 class="modal-title" id="myModalLabel">Sửa Hồ Sơ</h4>
+						<h4 class="modal-title" id="myModalLabel">Xem hình ảnh</h4>
 					</div>
 					<form id="showImageForm" class="form-horizontal" method="POST">
 					<div class="modal-body">

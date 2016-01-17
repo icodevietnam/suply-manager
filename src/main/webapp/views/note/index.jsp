@@ -14,7 +14,7 @@
 						<br/>
 						<h3>Danh sách những hồ sơ chưa được mượn</h3>
 						<div class="table-responsive">
-							<button data-toggle="modal" data-target="#createNote"
+							<button onclick="checkBoxLength();"
 							class="btn btn-sm btn-primary">Tạo phiếu mượn mới</button>
 							<table id="tableBrief"
 								class="table table-bordered table-hover table-striped">
@@ -22,9 +22,18 @@
 						</div>
 						<!-- Phieu muon -->
 						<br/>
-						<h3>Danh sách những phiếu mượn</h3>
+						<h3>Danh sách những phiếu mượn (hồ sơ chưa được trả)</h3>
 						<div class="table-responsive">
 							<table id="tableNote"
+								class="table table-bordered table-hover table-striped">
+							</table>
+						</div>
+						
+						<!-- Phieu trả -->
+						<br/>
+						<h3>Danh sách những phiếu mượn (hồ sơ đã trả)</h3>
+						<div class="table-responsive">
+							<table id="tablePaidNote"
 								class="table table-bordered table-hover table-striped">
 							</table>
 						</div>
@@ -43,24 +52,22 @@
 						</button>
 						<h4 class="modal-title" id="myModalLabel">Thêm Quyền</h4>
 					</div>
-					<form id="newItemForm" class="form-horizontal" method="POST">
+					<form id="createNoteForm" class="form-horizontal" method="POST">
 					<div class="modal-body">
 						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Tên</label>
-							<div class="col-sm-10">
-							<input type="text" class="form-control" id="roleName" name="roleName" >
+							<label for="name" class="col-sm-3 control-label">Phòng ban</label>
+							<div class="col-sm-9">
+								<select id="departmentBox" name="departmentBox" class="form-control combobox" data-style="btn-white">
+									<c:forEach var="department" items="${listDepartments}">
+										<option value="${department.id}">${department.name}</option>
+									</c:forEach>
+								</select>
 							</div>
-						</div>
-						<div class="form-group">
-							<label for="name" class="col-sm-2 control-label">Chú Thích</label>
-							<div class="col-sm-10">
-							<input type="text" class="form-control" id="roleDescription" name="roleDescription" >
-							</div>
+							<label style="font-weight: lighter;" for="name" class="col-sm-12 control-label">Khi bấm vào nút mượn hồ sơ , các phiếu mượn sẽ xuống danh sách những phiếu mượn</label>
 						</div>
 					</div>
 					<div class="modal-footer">
-						<button type="button" onclick="insertItem();" class="btn btn-primary">Lưu</button>
-						<button type="button" class="btn btn-default" data-dismiss="modal">Đóng</button>
+						<button type="button" onclick="borrowBrief();" class="btn btn-primary">Mượn hồ sơ</button>
 					</div>
 					</form>
 				</div>

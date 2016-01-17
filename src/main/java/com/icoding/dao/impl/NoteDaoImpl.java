@@ -23,11 +23,11 @@ public class NoteDaoImpl implements NoteDao {
 	}
 
 	@Override
-	public Note getNote(int id) {
+	public Note getNote(String code) {
 		List<Note> noteLists = new ArrayList<Note>();
 		Query query = getCurrentSession().createQuery(
-				"from Note r where r.id = :id");
-		query.setParameter("id", id);
+				"from Note r where r.code = :code");
+		query.setParameter("code", code);
 		noteLists = query.list();
 		if (noteLists.size() > 0)
 			return noteLists.get(0);
@@ -55,6 +55,26 @@ public class NoteDaoImpl implements NoteDao {
 	@Override
 	public void update(Note note) {
 		getCurrentSession().delete(note);
+	}
+
+	@Override
+	public List<Note> listNoteIsNotPaid() {
+		List<Note> noteLists = new ArrayList<Note>();
+		Query query = getCurrentSession().createQuery(
+				"from Note n where n.isPaid = :paid");
+		query.setParameter("paid", false);
+		noteLists = query.list();
+		return noteLists;
+	}
+	
+	@Override
+	public List<Note> listNoteIsPaid() {
+		List<Note> noteLists = new ArrayList<Note>();
+		Query query = getCurrentSession().createQuery(
+				"from Note n where n.isPaid = :paid");
+		query.setParameter("paid", true);
+		noteLists = query.list();
+		return noteLists;
 	}
 
 }

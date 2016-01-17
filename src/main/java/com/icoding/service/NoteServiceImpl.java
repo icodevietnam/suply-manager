@@ -17,8 +17,8 @@ public class NoteServiceImpl implements NoteService {
 	private NoteDao noteDao;
 
 	@Override
-	public Note getNote(int id) {
-		return noteDao.getNote(id);
+	public Note getNote(String code) {
+		return noteDao.getNote(code);
 	}
 
 	@Override
@@ -41,4 +41,14 @@ public class NoteServiceImpl implements NoteService {
 		noteDao.update(note);
 	}
 
+	@Override
+	public List<Note> listNoteIsNotPaid() {
+		return noteDao.listNoteIsNotPaid();
+	}
+
+	@Override
+	public List<Note> listNoteIsPaid() {
+		return noteDao.listNoteIsPaid();
+	}
+	
 }

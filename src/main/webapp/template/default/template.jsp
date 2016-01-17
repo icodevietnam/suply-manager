@@ -32,6 +32,9 @@
     <script src="<c:url value='/resources/default/js/jquery.canvasjs.min.js'/>"></script>
 </head>
 <body>
+	<script type="text/javascript">
+		moment.locale('vi'); 
+	</script>
     <div id="wrapper">
 		<tiles:insertAttribute name="navigation" />
         <div id="page-wrapper" class="gray-bg">

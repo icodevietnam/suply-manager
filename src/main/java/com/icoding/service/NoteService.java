@@ -5,7 +5,7 @@ import java.util.List;
 import com.icoding.domain.Note;
 
 public interface NoteService {
-	public Note getNote(int id);
+	public Note getNote(String code);
 
 	List<Note> getAll();
 
@@ -14,4 +14,8 @@ public interface NoteService {
 	void delete(Note note);
 
 	void update(Note note);
+	
+	List<Note> listNoteIsNotPaid();
+	
+	List<Note> listNoteIsPaid();
 }

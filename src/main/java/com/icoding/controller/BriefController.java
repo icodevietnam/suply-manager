@@ -21,13 +21,17 @@ import com.icoding.domain.BriefType;
 import com.icoding.domain.Customer;
 import com.icoding.domain.Department;
 import com.icoding.domain.File;
+import com.icoding.domain.Note;
 import com.icoding.domain.Stock;
+import com.icoding.dto.BriefNote;
+import com.icoding.dto.Graph;
 import com.icoding.process.ImageProcess;
 import com.icoding.service.BriefService;
 import com.icoding.service.BriefTypeService;
 import com.icoding.service.CustomerService;
 import com.icoding.service.DepartmentService;
 import com.icoding.service.FileService;
+import com.icoding.service.NoteService;
 import com.icoding.service.StockService;
 
 @Controller
@@ -50,7 +54,11 @@ public class BriefController {
 
 	@Autowired
 	private FileService fileService;
-
+	
+	@Autowired
+	private NoteService noteService;
+	
+	//Show trang hồ sơ trong admin
 	@RequestMapping(value = { "/admin/brief",
 			"/admin/brief/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
@@ -71,7 +79,7 @@ public class BriefController {
 		return "brief/index";
 	}
 
-	// Response brief as json
+	//Trả ra toàn bộ hồ sơ
 	@RequestMapping(value = "/brief/getAll", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Brief> getAll(Model model) {
@@ -224,6 +232,41 @@ public class BriefController {
 	public List<Brief> getBriefNotBorrow() {
 		List<Brief> listBriefs = briefService.showNoneBorrow();
 		return listBriefs;
+	}
+	
+	@RequestMapping(value = "/brief/updateNote", method = RequestMethod.POST)
+	@ResponseBody
+	public String updateBrief(HttpServletRequest request, @RequestParam(value = "briefId") String briefId,@RequestParam(value="noteId") String noteId) {
+		Brief brief = briefService.getBrief(Integer.parseInt(briefId));
+		Note note = noteService.getNote(noteId);
+		brief.setNote(note);
+		try {
+			briefService.update(brief);
+			return "true";
+		} catch (Exception e) {
+			return "false";
+		}
+	}
+	
+	@RequestMapping(value = "/brief/listBriefNote", method = RequestMethod.GET)
+	@ResponseBody
+	public List<BriefNote> listBriefNote(Model model) {
+		List<BriefNote> listBriefNote = briefService.getListBriefNote();
+		return listBriefNote;
+	}
+	
+	@RequestMapping(value = "/brief/listBriefByDepartment", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Graph> listBriefByDepartment(Model model) {
+		List<Graph> listGraphs = briefService.listBriefByDepartment();
+		return listGraphs;
+	}
+	
+	@RequestMapping(value = "/brief/listGraphByStock", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Graph> listGraphByStock(Model model) {
+		List<Graph> listGraphs = briefService.listGraphByStock();
+		return listGraphs;
 	}
 
 }

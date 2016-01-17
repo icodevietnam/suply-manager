@@ -4,9 +4,15 @@ $(function() {
 
 function searchData() {
 	var searchText = $('#searchName').val();
+	var url = "";
+	if(searchText === ""){
+		url ="/suply-manager/brief/getAll";
+	}else{
+		url ="/suply-manager/brief/searchName";
+	}
 	var dataDepartments = [];
 	$.ajax({
-		url : "/suply-manager/brief/searchName",
+		url : url,
 		type : "GET",
 		dataType : "JSON",
 		data : {

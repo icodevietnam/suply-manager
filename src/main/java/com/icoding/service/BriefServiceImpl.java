@@ -9,6 +9,8 @@ import org.springframework.transaction.annotation.Transactional;
 import com.icoding.dao.BriefDao;
 import com.icoding.domain.Brief;
 import com.icoding.domain.Customer;
+import com.icoding.dto.BriefNote;
+import com.icoding.dto.Graph;
 
 @Service
 @Transactional
@@ -57,4 +59,19 @@ public class BriefServiceImpl implements BriefService {
 		return briefDao.showNoneBorrow();
 	}
 
+	@Override
+	public List<BriefNote> getListBriefNote() {
+		return briefDao.getListBriefNote();
+	}
+
+	@Override
+	public List<Graph> listBriefByDepartment() {
+		return briefDao.listBriefByDepartment();
+	}
+
+	@Override
+	public List<Graph> listGraphByStock() {
+		return briefDao.listGraphByStock();
+	}
+	
 }

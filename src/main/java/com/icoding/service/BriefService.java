@@ -4,6 +4,8 @@ import java.util.List;
 
 import com.icoding.domain.Brief;
 import com.icoding.domain.Customer;
+import com.icoding.dto.BriefNote;
+import com.icoding.dto.Graph;
 
 public interface BriefService {
 
@@ -22,4 +24,9 @@ public interface BriefService {
 	List<Brief> searchBrief(int cusId);
 	
 	List<Brief> showNoneBorrow();
+	
+	List<BriefNote> getListBriefNote();
+	
+	List<Graph> listBriefByDepartment();
+	List<Graph> listGraphByStock();
 }
