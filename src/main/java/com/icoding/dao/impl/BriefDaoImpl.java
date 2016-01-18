@@ -97,7 +97,7 @@ public class BriefDaoImpl implements BriefDao {
 		listBriefs = query.list();
 		return listBriefs;
 	}
-	
+
 	@Override
 	public List<Brief> showBriefBorrow() {
 		List<Brief> listBriefs = new ArrayList<Brief>();
@@ -123,11 +123,9 @@ public class BriefDaoImpl implements BriefDao {
 		List<Graph> listGraph = new ArrayList<Graph>();
 		Query query = getCurrentSession()
 				.createSQLQuery(
-						" Select d.name  as 'name', count(b.id) as 'count' " 
-						+ " from brief b, department d, note n "	
-						+ " where b.note = n.code AND n.department = d.id AND b.note IS NOT NULL "
-						+ " GROUP BY d.name "
-						)
+						" Select d.name  as 'name', count(b.id) as 'count' " + " from brief b, department d, note n "
+								+ " where b.note = n.code AND n.department = d.id AND b.note IS NOT NULL "
+								+ " GROUP BY d.name ")
 				.addScalar("name").addScalar("count", LongType.INSTANCE)
 				.setResultTransformer(Transformers.aliasToBean(Graph.class));
 		listGraph = query.list();
@@ -138,12 +136,8 @@ public class BriefDaoImpl implements BriefDao {
 	public List<Graph> listGraphByStock() {
 		List<Graph> listGraph = new ArrayList<Graph>();
 		Query query = getCurrentSession()
-				.createSQLQuery(
-						" Select s.name  as 'name', count(b.id) as 'count' " 
-						+ " from stock s, brief b "	
-						+ " where b.stock_id = s.id  "
-						+ " GROUP BY s.name "
-						)
+				.createSQLQuery(" Select s.name  as 'name', count(b.id) as 'count' " + " from stock s, brief b "
+						+ " where b.stock_id = s.id  " + " GROUP BY s.name ")
 				.addScalar("name").addScalar("count", LongType.INSTANCE)
 				.setResultTransformer(Transformers.aliasToBean(Graph.class));
 		listGraph = query.list();
@@ -151,8 +145,12 @@ public class BriefDaoImpl implements BriefDao {
 	}
 
 	@Override
-	public List<Graph> listBriefFromTo(Date fromDate, Date toDate) {
-		return null;
+	public List<Brief> listBriefFromTo(Date fromDate, Date toDate) {
+		List<Brief> listBriefs = new ArrayList<Brief>();
+		Query query = getCurrentSession().createQuery(" from Brief where createDate between :startDate AND :toDate")
+				.setParameter("startDate", fromDate).setParameter("toDate", toDate);
+		listBriefs = query.list();
+		return listBriefs;
 	}
 
 }

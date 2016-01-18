@@ -10,26 +10,26 @@
 					<div class="ibox-content">
 						<div class="row">
 							<h3>Danh sách những hồ sơ :</h3>
-							<form class="form-inline">
+							<form id="searchBriefForm" class="form-inline">
 								<div class="form-group">
 									<label for="exampleInputName2">Từ</label> <input type="text"
-										class="dateInput form-control" id="fromDate" >
+										class="dateInput form-control" name="fromDate">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail2">Đến</label> <input type="text"
-										class="dateInput form-control" id="toDate" >
+										class="dateInput form-control" name="toDate">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail2">Mã PE</label> <input
-										type="email" class="form-control" id="toDate" placeholder="">
+										type="text" class="form-control" name="code" placeholder="">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail2">Tên khách hàng</label> <input
-										type="email" class="form-control" id="toDate" placeholder="">
+										type="text" class="form-control" name="customerName" placeholder="">
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail2">Loại hồ sơ</label> <select
-										id="stateBox" class="combobox form-control" name="stateBox"
+										class="combobox form-control" name="briefTypeBox"
 										data-style="btn-white">
 										<c:forEach var="briefType" items="${listBrieftType}">
 											<option value="${briefType.id}">${briefType.name}</option>
@@ -38,18 +38,18 @@
 								</div>
 								<div class="form-group">
 									<label for="exampleInputEmail2">Kho</label> <select
-										id="stateBox" class="combobox form-control" name="stateBox"
+										class="combobox form-control" name="stockBox"
 										data-style="btn-white">
 										<c:forEach var="stock" items="${listStock}">
 											<option value="${stock.id}">${stock.name}</option>
 										</c:forEach>
 									</select>
 								</div>
-								<button type="submit" class="btn btn-primary">Tìm hồ sơ</button>
-								<table id="tableBrief"
-									class="table table-bordered table-hover table-striped">
-								</table>
+								<button type="button" onclick="searchBrief();" class="btn btn-primary">Tìm hồ sơ</button>
 							</form>
+							<table id="tableBrief"
+								class="table table-bordered table-hover table-striped">
+							</table>
 						</div>
 						<div class="row">
 							<div class="col-lg-6">

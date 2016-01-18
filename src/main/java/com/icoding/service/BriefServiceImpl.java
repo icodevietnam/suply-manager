@@ -1,5 +1,6 @@
 package com.icoding.service;
 
+import java.util.Date;
 import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -77,6 +78,11 @@ public class BriefServiceImpl implements BriefService {
 	@Override
 	public List<Brief> showBriefBorrow() {
 		return briefDao.showBriefBorrow();
+	}
+
+	@Override
+	public List<Brief> listBriefFromTo(Date fromDate, Date toDate) {
+		return briefDao.listBriefFromTo(fromDate, toDate);
 	}
 	
 }

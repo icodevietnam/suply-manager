@@ -1,5 +1,6 @@
 package com.icoding.controller;
 
+import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
@@ -274,6 +275,25 @@ public class BriefController {
 	public List<Graph> listGraphByStock(Model model) {
 		List<Graph> listGraphs = briefService.listGraphByStock();
 		return listGraphs;
+	}
+
+	@RequestMapping(value = "/brief/searchBriefsInReport", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Brief> searchBrief(@RequestParam(value = "fromDate") String fromDateStr,
+			@RequestParam(value = "toDate") String toDateStr, @RequestParam(value = "code") String code,
+			@RequestParam(value = "customerName") String customerName,
+			@RequestParam(value = "briefTypeBox") String briefTypeBox,
+			@RequestParam(value = "stockBox") String stockBox) {
+		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
+		List<Brief> listBriefs = new ArrayList<Brief>();
+		try {
+			Date fromDate = formatter.parse(fromDateStr);
+			Date toDate = formatter.parse(toDateStr);
+			listBriefs = briefService.listBriefFromTo(fromDate, toDate);
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return listBriefs;
 	}
 
 }

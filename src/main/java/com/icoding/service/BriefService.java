@@ -1,5 +1,6 @@
 package com.icoding.service;
 
+import java.util.Date;
 import java.util.List;
 
 import com.icoding.domain.Brief;
@@ -31,4 +32,5 @@ public interface BriefService {
 	List<Graph> listGraphByStock();
 	
 	List<Brief> showBriefBorrow();
+	List<Brief> listBriefFromTo(Date fromDate,Date toDate);
 }

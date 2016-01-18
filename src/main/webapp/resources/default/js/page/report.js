@@ -1,13 +1,103 @@
 $(function() {
 	// Set get date
 	$(".dateInput").datepicker('setDate', new Date());
+	initComponent();
+	validate();
+});
 
+function searchBrief(){
+	var dataItems = [];
+	var fromDate = $("#searchBriefForm input[name='fromDate']").val();
+	var toDate = $("#searchBriefForm input[name='toDate']").val();
+	var code = $("#searchBriefForm input[name='code']").val();
+	var customerName = $("#searchBriefForm input[name='customerName']").val();
+	var briefTypeBox = $("#searchBriefForm select[name='briefTypeBox']").val();
+	var stockBox = $("#searchBriefForm select[name='stockBox']").val();
+	if($("#searchBriefForm").valid()){
+		fromDate+=" 00:00:00";
+		toDate+=" 23:59:59";
+		$.ajax({
+			url : "/suply-manager/brief/searchBriefsInReport",
+			type : "GET",
+			dataType : "JSON",
+			data : {
+				fromDate : fromDate,
+				toDate : toDate,
+				code : code,
+				customerName : customerName,
+				briefTypeBox : briefTypeBox,
+				stockBox : stockBox
+			},
+			success : function(response) {
+				var i = 0;
+				$.each(response, function(key, value) {
+					i++;
+					dataItems.push([ i, value.content,
+							moment(value.createDate).format("Do MMMM YYYY"),
+							value.customer.code, value.customer.name,
+							value.department.name, value.stock.name,
+							value.briefType.name ]);
+				});
+				$('#tableBrief').dataTable({
+					"bDestroy" : true,
+					"bSort" : true,
+					"bFilter" : true,
+					"bLengthChange" : true,
+					"bPaginate" : true,
+					"sDom" : '<"top">rt<"bottom"flp><"clear">',
+					"aaData" : dataItems,
+					"aaSorting" : [],
+					"aoColumns" : [ {
+						"sTitle" : "STT"
+					}, {
+						"sTitle" : "Nội dung"
+					}, {
+						"sTitle" : "Ngày lập"
+					}, {
+						"sTitle" : "Mã Khách hàng"
+					}, {
+						"sTitle" : "Khách hàng"
+					}, {
+						"sTitle" : "Phòng ban"
+					}, {
+						"sTitle" : "Kho"
+					}, {
+						"sTitle" : "Loại Hồ Sơ"
+					} ]
+				});
+			}
+		});
+	}
+}
+
+function validate(){
+	$("#searchBriefForm").validate({
+		rules : {
+			fromDate:{
+				required:true
+			},
+			toDate:{
+				required:true
+			}
+		},
+		messages : {
+			fromDate:{
+				required:"Từ ngày không được để trống"
+			},
+			toDate:{
+				required:"Tới ngày không được để trống"
+			}
+		},
+	});
+}
+
+function initComponent(){
 	displayNotePaid();
 	chartBrief();
 	displayBrief();
 	listGraphByStock();
 	listBriefByDepartment();
-});
+}
 
 function displayBrief() {
 	var dataItems = [];
