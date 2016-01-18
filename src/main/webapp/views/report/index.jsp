@@ -31,6 +31,7 @@
 									<label for="exampleInputEmail2">Loại hồ sơ</label> <select
 										class="combobox form-control" name="briefTypeBox"
 										data-style="btn-white">
+										<option value="0">Không chọn</option>
 										<c:forEach var="briefType" items="${listBrieftType}">
 											<option value="${briefType.id}">${briefType.name}</option>
 										</c:forEach>
@@ -40,6 +41,7 @@
 									<label for="exampleInputEmail2">Kho</label> <select
 										class="combobox form-control" name="stockBox"
 										data-style="btn-white">
+										<option value="0">Không chọn</option>
 										<c:forEach var="stock" items="${listStock}">
 											<option value="${stock.id}">${stock.name}</option>
 										</c:forEach>

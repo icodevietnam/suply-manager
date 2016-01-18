@@ -25,8 +25,8 @@ public class ReportController {
 
 	@RequestMapping(value = { "/admin/report" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		model.addAttribute("pageName", "Báo cáo");
-		model.addAttribute("title", "Báo cáo");
+		model.addAttribute("pageName", "BÃ¡o cÃ¡o");
+		model.addAttribute("title", "BÃ¡o cÃ¡o");
 		List<BriefType> listBrieftType = briefTypeService.getAll();
 		List<Stock> listStock = stockService.getAll();
 		model.addAttribute("listBrieftType", listBrieftType);

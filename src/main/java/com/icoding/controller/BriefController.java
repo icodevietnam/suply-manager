@@ -280,10 +280,7 @@ public class BriefController {
 	@RequestMapping(value = "/brief/searchBriefsInReport", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Brief> searchBrief(@RequestParam(value = "fromDate") String fromDateStr,
-			@RequestParam(value = "toDate") String toDateStr, @RequestParam(value = "code") String code,
-			@RequestParam(value = "customerName") String customerName,
-			@RequestParam(value = "briefTypeBox") String briefTypeBox,
-			@RequestParam(value = "stockBox") String stockBox) {
+			@RequestParam(value = "toDate") String toDateStr) {
 		SimpleDateFormat formatter = new SimpleDateFormat("MM/dd/yyyy HH:mm:ss");
 		List<Brief> listBriefs = new ArrayList<Brief>();
 		try {

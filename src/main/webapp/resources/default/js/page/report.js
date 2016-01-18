@@ -13,6 +13,8 @@ function searchBrief(){
 	var customerName = $("#searchBriefForm input[name='customerName']").val();
 	var briefTypeBox = $("#searchBriefForm select[name='briefTypeBox']").val();
 	var stockBox = $("#searchBriefForm select[name='stockBox']").val();
+	
+	
 	if($("#searchBriefForm").valid()){
 		fromDate+=" 00:00:00";
 		toDate+=" 23:59:59";
@@ -31,12 +33,46 @@ function searchBrief(){
 			success : function(response) {
 				var i = 0;
 				$.each(response, function(key, value) {
+					alert(value.briefType.id == briefTypeBox);
 					i++;
-					dataItems.push([ i, value.content,
-							moment(value.createDate).format("Do MMMM YYYY"),
-							value.customer.code, value.customer.name,
-							value.department.name, value.stock.name,
-							value.briefType.name ]);
+					if(value.customer.code.indexOf(code) >= 0 && value.customer.name.indexOf(customerName) >= 0 && value.briefType.id == briefTypeBox && value.stock.id == stockBox)
+					{
+						dataItems.push([ i, value.content,
+											moment(value.createDate).format("Do MMMM YYYY"),
+											value.customer.code, value.customer.name,
+											value.department.name, value.stock.name,
+											value.briefType.name ]);
+					}
+					if(value.customer.code.indexOf(code) >= 0 && value.customer.name.indexOf(customerName) >= 0 && briefTypeBox == "0" && stockBox == "0")
+					{
+						dataItems.push([ i, value.content,
+											moment(value.createDate).format("Do MMMM YYYY"),
+											value.customer.code, value.customer.name,
+											value.department.name, value.stock.name,
+											value.briefType.name ]);
+					}
+					if(value.customer.code.indexOf(code) >= 0 && value.customer.name.indexOf(customerName) >= 0 && value.briefType.id == briefTypeBox && stockBox == "0")
+					{
+						dataItems.push([ i, value.content,
+											moment(value.createDate).format("Do MMMM YYYY"),
+											value.customer.code, value.customer.name,
+											value.department.name, value.stock.name,
+											value.briefType.name ]);
+					}
+					if(value.customer.code.indexOf(code) >= 0 && value.customer.name.indexOf(customerName) >= 0 && briefTypeBox == "0" && value.stock.id == stockBox)
+					{
+						dataItems.push([ i, value.content,
+											moment(value.createDate).format("Do MMMM YYYY"),
+											value.customer.code, value.customer.name,
+											value.department.name, value.stock.name,
+											value.briefType.name ]);
+					}
+
+//					dataItems.push([ i, value.content,
+//							moment(value.createDate).format("Do MMMM YYYY"),
+//							value.customer.code, value.customer.name,
+//							value.department.name, value.stock.name,
+//							value.briefType.name ]);
 				});
 				$('#tableBrief').dataTable({
 					"bDestroy" : true,
