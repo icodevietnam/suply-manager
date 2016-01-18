@@ -97,6 +97,14 @@ public class BriefDaoImpl implements BriefDao {
 		listBriefs = query.list();
 		return listBriefs;
 	}
+	
+	@Override
+	public List<Brief> showBriefBorrow() {
+		List<Brief> listBriefs = new ArrayList<Brief>();
+		Query query = getCurrentSession().createQuery(" from Brief b where b.note is not null ");
+		listBriefs = query.list();
+		return listBriefs;
+	}
 
 	@Override
 	public List<BriefNote> getListBriefNote() {

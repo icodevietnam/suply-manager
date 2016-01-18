@@ -54,11 +54,11 @@ public class BriefController {
 
 	@Autowired
 	private FileService fileService;
-	
+
 	@Autowired
 	private NoteService noteService;
-	
-	//Show trang hồ sơ trong admin
+
+	// Show trang hồ sơ trong admin
 	@RequestMapping(value = { "/admin/brief",
 			"/admin/brief/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
@@ -79,7 +79,7 @@ public class BriefController {
 		return "brief/index";
 	}
 
-	//Trả ra toàn bộ hồ sơ
+	// Trả ra toàn bộ hồ sơ
 	@RequestMapping(value = "/brief/getAll", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Brief> getAll(Model model) {
@@ -95,8 +95,8 @@ public class BriefController {
 		brief.setDepartment(null);
 		brief.setStock(null);
 		brief.setCustomer(null);
-		List<File> listFiles =brief.getListImage();
-		for(File file : listFiles){
+		List<File> listFiles = brief.getListImage();
+		for (File file : listFiles) {
 			file.setBrief(null);
 			fileService.delete(file);
 		}
@@ -210,33 +210,40 @@ public class BriefController {
 		listBriefs = briefService.searchBrief(Integer.parseInt(cusId));
 		return listBriefs;
 	}
-	
-	
+
 	@RequestMapping(value = "/brief/{code}", method = RequestMethod.GET)
-	public String getBriefCode(Model model,@PathVariable(value = "code") String code) {
+	public String getBriefCode(Model model, @PathVariable(value = "code") String code) {
 		Customer customer = customerService.getCustomer(code);
 		List<Brief> listBriefs = briefService.getAll();
 		List<Brief> filterBrief = new ArrayList<Brief>();
-		for(Brief brief : listBriefs){
-			if(brief.getCustomer().getCode().toLowerCase().equalsIgnoreCase(code.toLowerCase())){
+		for (Brief brief : listBriefs) {
+			if (brief.getCustomer().getCode().toLowerCase().equalsIgnoreCase(code.toLowerCase())) {
 				filterBrief.add(brief);
 			}
 		}
-		model.addAttribute("listBrief",filterBrief);
+		model.addAttribute("listBrief", filterBrief);
 		model.addAttribute("title", "Hồ Sơ của : " + customer.getName());
 		return "home/showBrief";
 	}
-	
+
 	@RequestMapping(value = "/brief/searchNotBorrow", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Brief> getBriefNotBorrow() {
 		List<Brief> listBriefs = briefService.showNoneBorrow();
 		return listBriefs;
 	}
-	
+
+	@RequestMapping(value = "/brief/searchBorrow", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Brief> searchBorrow() {
+		List<Brief> listBriefs = briefService.showBriefBorrow();
+		return listBriefs;
+	}
+
 	@RequestMapping(value = "/brief/updateNote", method = RequestMethod.POST)
 	@ResponseBody
-	public String updateBrief(HttpServletRequest request, @RequestParam(value = "briefId") String briefId,@RequestParam(value="noteId") String noteId) {
+	public String updateBrief(HttpServletRequest request, @RequestParam(value = "briefId") String briefId,
+			@RequestParam(value = "noteId") String noteId) {
 		Brief brief = briefService.getBrief(Integer.parseInt(briefId));
 		Note note = noteService.getNote(noteId);
 		brief.setNote(note);
@@ -247,21 +254,21 @@ public class BriefController {
 			return "false";
 		}
 	}
-	
+
 	@RequestMapping(value = "/brief/listBriefNote", method = RequestMethod.GET)
 	@ResponseBody
 	public List<BriefNote> listBriefNote(Model model) {
 		List<BriefNote> listBriefNote = briefService.getListBriefNote();
 		return listBriefNote;
 	}
-	
+
 	@RequestMapping(value = "/brief/listBriefByDepartment", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Graph> listBriefByDepartment(Model model) {
 		List<Graph> listGraphs = briefService.listBriefByDepartment();
 		return listGraphs;
 	}
-	
+
 	@RequestMapping(value = "/brief/listGraphByStock", method = RequestMethod.GET)
 	@ResponseBody
 	public List<Graph> listGraphByStock(Model model) {

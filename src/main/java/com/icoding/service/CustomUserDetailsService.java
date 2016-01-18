@@ -29,17 +29,15 @@ public class CustomUserDetailsService implements UserDetailsService {
 	private RoleDao roleDao;
 
 	@Override
-	public UserDetails loadUserByUsername(String username)
-			throws UsernameNotFoundException {
+	public UserDetails loadUserByUsername(String username) throws UsernameNotFoundException {
 		com.icoding.domain.User user = userDao.getUser(username);
 
 		boolean enabled = true;
 		boolean accountNonExpired = true;
 		boolean credentialsNonExpired = true;
 		boolean accountNonLocked = true;
-		return (UserDetails) new User(user.getUsername(), user.getPassword(),
-				enabled, accountNonExpired, credentialsNonExpired,
-				accountNonLocked, getAuthorities(user.getRole().getId()));
+		return (UserDetails) new User(user.getUsername(), user.getPassword(), enabled, accountNonExpired,
+				credentialsNonExpired, accountNonLocked, getAuthorities(user.getRole().getId()));
 	}
 
 	public Collection<? extends GrantedAuthority> getAuthorities(Integer role) {
@@ -52,16 +50,13 @@ public class CustomUserDetailsService implements UserDetailsService {
 		List<String> roles = new ArrayList<String>();
 		if (role.getName().equalsIgnoreCase("admin")) {
 			roles.add("ROLE_ADMIN");
-		} else if (role.getName().equalsIgnoreCase("moderator")) {
-			roles.add("ROLE_MODERATOR");
 		} else {
-			roles.add("ROLE_USER");
+			roles.add("ROLE_MODERATOR");
 		}
 		return roles;
 	}
 
-	public static List<GrantedAuthority> getGrantedAuthorities(
-			List<String> roles) {
+	public static List<GrantedAuthority> getGrantedAuthorities(List<String> roles) {
 		List<GrantedAuthority> authorities = new ArrayList<GrantedAuthority>();
 		for (String role : roles) {
 			authorities.add(new SimpleGrantedAuthority(role));

@@ -29,4 +29,6 @@ public interface BriefService {
 	
 	List<Graph> listBriefByDepartment();
 	List<Graph> listGraphByStock();
+	
+	List<Brief> showBriefBorrow();
 }

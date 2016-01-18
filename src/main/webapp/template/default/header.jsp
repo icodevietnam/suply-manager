@@ -10,8 +10,9 @@
 				href="#"><i class="fa fa-bars"></i> </a>
 		</div>
 		<ul class="nav navbar-top-links navbar-right">
-			<li><span class="m-r-sm text-muted welcome-message">Xin chào,
-					<strong><%= request.getUserPrincipal().getName() %>  </strong> ! </span></li>
+			<li><span class="m-r-sm text-muted welcome-message">Xin
+					chào, <strong><%=request.getUserPrincipal().getName()%> </strong> !
+			</span></li>
 			<li class="dropdown"><a class="dropdown-toggle count-info"
 				data-toggle="dropdown" href="#"> <i class="fa fa-bell"></i> <span
 					class="label label-primary">8</span>

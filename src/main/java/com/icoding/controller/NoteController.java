@@ -14,6 +14,7 @@ import org.springframework.web.bind.annotation.ResponseBody;
 import com.icoding.domain.Brief;
 import com.icoding.domain.Department;
 import com.icoding.domain.Note;
+import com.icoding.dto.Graph;
 import com.icoding.service.BriefService;
 import com.icoding.service.DepartmentService;
 import com.icoding.service.NoteService;
@@ -32,6 +33,8 @@ public class NoteController {
 	@RequestMapping(value = { "/admin/note",
 			"admin/note/list" }, method = RequestMethod.GET, produces = "text/plain;charset=UTF-8")
 	public String displayPage(Model model) {
+		model.addAttribute("pageName", "Quản lý phiếu mượn trả");
+		model.addAttribute("title", "Quản lý phiếu mượn trả");
 		List<Department> listDepartments = departmentService.getAll();
 		model.addAttribute("listDepartments",listDepartments);
 		return "note/index";
@@ -53,13 +56,13 @@ public class NoteController {
 	
 	@RequestMapping(value = { "/note/saveNote"}, method = RequestMethod.POST)
 	@ResponseBody
-	public Note saveNote(@RequestParam(value="departmentBox") String departmentBox){
+	public Note saveNote(@RequestParam(value="departmentBox") String departmentBox,@RequestParam(value = "borrowMan")String borrowMan){
 		Note note = new Note();
 		try {
 			Department department = departmentService.getDepartment(Integer.parseInt(departmentBox));
 			note.setDepartment(department);
 			note.setBorrowDate(new Date());
-			
+			note.setBorrowMan(borrowMan);
 			noteService.saveOrUpdate(note);
 		} catch (Exception e) {
 			e.printStackTrace();
@@ -87,6 +90,13 @@ public class NoteController {
 			e.printStackTrace();
 			return "false";
 		}
+	}
+	
+	@RequestMapping(value = "/note/getBriefCode", method = RequestMethod.GET)
+	@ResponseBody
+	public List<Brief> listGraphByStock(Model model,@RequestParam(value="code") String code) {
+		List<Brief> listGraphs = noteService.showListBriefByCode(code);
+		return listGraphs;
 	}
 	
 }

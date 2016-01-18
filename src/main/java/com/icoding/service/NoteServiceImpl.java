@@ -7,6 +7,7 @@ import org.springframework.stereotype.Service;
 import org.springframework.transaction.annotation.Transactional;
 
 import com.icoding.dao.NoteDao;
+import com.icoding.domain.Brief;
 import com.icoding.domain.Note;
 
 @Service
@@ -49,6 +50,11 @@ public class NoteServiceImpl implements NoteService {
 	@Override
 	public List<Note> listNoteIsPaid() {
 		return noteDao.listNoteIsPaid();
+	}
+
+	@Override
+	public List<Brief> showListBriefByCode(String code) {
+		return noteDao.showListBriefByCode(code);
 	}
 	
 }

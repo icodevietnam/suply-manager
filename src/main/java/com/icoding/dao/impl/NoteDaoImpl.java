@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
 import com.icoding.dao.NoteDao;
+import com.icoding.domain.Brief;
 import com.icoding.domain.Note;
 
 @Repository
@@ -61,7 +62,7 @@ public class NoteDaoImpl implements NoteDao {
 	public List<Note> listNoteIsNotPaid() {
 		List<Note> noteLists = new ArrayList<Note>();
 		Query query = getCurrentSession().createQuery(
-				"from Note n where n.isPaid = :paid");
+				"from Note n where n.isPaid = :paid order by code desc ");
 		query.setParameter("paid", false);
 		noteLists = query.list();
 		return noteLists;
@@ -71,10 +72,17 @@ public class NoteDaoImpl implements NoteDao {
 	public List<Note> listNoteIsPaid() {
 		List<Note> noteLists = new ArrayList<Note>();
 		Query query = getCurrentSession().createQuery(
-				"from Note n where n.isPaid = :paid");
+				"from Note n where n.isPaid = :paid order by code desc ");
 		query.setParameter("paid", true);
 		noteLists = query.list();
 		return noteLists;
+	}
+
+	@Override
+	public List<Brief> showListBriefByCode(String noteCode) {
+		Note note = getNote(noteCode);
+		List<Brief> listBrief = note.getListBrief();
+		return listBrief;
 	}
 
 }

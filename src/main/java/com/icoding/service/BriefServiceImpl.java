@@ -73,5 +73,10 @@ public class BriefServiceImpl implements BriefService {
 	public List<Graph> listGraphByStock() {
 		return briefDao.listGraphByStock();
 	}
+
+	@Override
+	public List<Brief> showBriefBorrow() {
+		return briefDao.showBriefBorrow();
+	}
 	
 }

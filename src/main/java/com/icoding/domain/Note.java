@@ -44,6 +44,9 @@ public class Note {
 	@Column(name="is_paid")
 	private boolean isPaid = false;
 	
+	@Column(name="borrow_man")
+	private String borrowMan;
+	
 	@OneToMany(fetch = FetchType.EAGER, mappedBy = "note", cascade = CascadeType.ALL)
 	@Fetch(FetchMode.SELECT)
 	@JsonIgnore
@@ -95,6 +98,14 @@ public class Note {
 
 	public void setPaid(boolean isPaid) {
 		this.isPaid = isPaid;
+	}
+
+	public String getBorrowMan() {
+		return borrowMan;
+	}
+
+	public void setBorrowMan(String borrowMan) {
+		this.borrowMan = borrowMan;
 	}
 
 }

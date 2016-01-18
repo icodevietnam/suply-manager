@@ -16,17 +16,17 @@ import com.icoding.service.StockService;
 
 @Controller
 public class ReportController {
-	
+
 	@Autowired
 	private BriefTypeService briefTypeService;
-	
+
 	@Autowired
 	private StockService stockService;
-	
-	@RequestMapping(value = { "/admin/report"}, method = RequestMethod.GET)
+
+	@RequestMapping(value = { "/admin/report" }, method = RequestMethod.GET)
 	public String home(Locale locale, Model model) {
-		model.addAttribute("pageName", "BÃ¡o cÃ¡o");
-		model.addAttribute("title", "BÃ¡o cÃ¡o");
+		model.addAttribute("pageName", "Báo cáo");
+		model.addAttribute("title", "Báo cáo");
 		List<BriefType> listBrieftType = briefTypeService.getAll();
 		List<Stock> listStock = stockService.getAll();
 		model.addAttribute("listBrieftType", listBrieftType);

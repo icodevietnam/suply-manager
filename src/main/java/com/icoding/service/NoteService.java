@@ -2,6 +2,7 @@ package com.icoding.service;
 
 import java.util.List;
 
+import com.icoding.domain.Brief;
 import com.icoding.domain.Note;
 
 public interface NoteService {
@@ -18,4 +19,6 @@ public interface NoteService {
 	List<Note> listNoteIsNotPaid();
 	
 	List<Note> listNoteIsPaid();
+
+	List<Brief> showListBriefByCode(String code);
 }

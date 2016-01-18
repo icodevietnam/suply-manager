@@ -30,4 +30,7 @@ public interface BriefDao {
 	List<Graph> listGraphByStock();
 	
 	List<Graph> listBriefFromTo(Date fromDate,Date toDate);
+	
+	List<Brief> showBriefBorrow();
+	
 }

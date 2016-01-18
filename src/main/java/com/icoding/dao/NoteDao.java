@@ -2,6 +2,7 @@ package com.icoding.dao;
 
 import java.util.List;
 
+import com.icoding.domain.Brief;
 import com.icoding.domain.Note;
 
 public interface NoteDao {
@@ -17,4 +18,6 @@ public interface NoteDao {
 	
 	List<Note> listNoteIsNotPaid();
 	List<Note> listNoteIsPaid();
+	
+	List<Brief> showListBriefByCode(String noteCode);
 }
