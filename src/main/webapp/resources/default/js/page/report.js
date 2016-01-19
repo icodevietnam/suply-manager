@@ -33,7 +33,6 @@ function searchBrief(){
 			success : function(response) {
 				var i = 0;
 				$.each(response, function(key, value) {
-					alert(value.briefType.id == briefTypeBox);
 					i++;
 					if(value.customer.code.indexOf(code) >= 0 && value.customer.name.indexOf(customerName) >= 0 && value.briefType.id == briefTypeBox && value.stock.id == stockBox)
 					{
